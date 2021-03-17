@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1340
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RezervationSystem", "RezervationSystem\RezervationSystem.csproj", "{FB8451A1-EC06-4FF5-893D-FF0BDFB09B64}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB8451A1-EC06-4FF5-893D-FF0BDFB09B64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB8451A1-EC06-4FF5-893D-FF0BDFB09B64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB8451A1-EC06-4FF5-893D-FF0BDFB09B64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB8451A1-EC06-4FF5-893D-FF0BDFB09B64}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {03E64EB6-3265-48B2-BCF6-66864D13B244}
+	EndGlobalSection
+EndGlobal
