@@ -5,15 +5,55 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RezervationSystem.Models;
+using RezervationSystem.Business;
+using RezervationSystem.Business.Postgre;
+using RezervationSystem.UI.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RezervationSystem.Controllers
 {
     public class HomeController : Controller
     {
+
+        PostgreServices postgreServices;
+
+        public HomeController()
+        {
+            postgreServices = new PostgreServices(); 
+
+
+        }
         public IActionResult Index()
         {
+          var gelen= OdalariDoldur();
             return View();
         }
+
+
+
+        public JsonResult OdalariDoldur()
+        {
+            List<RoomViewModel> roomViews = new List<RoomViewModel>();
+            var odalar = postgreServices.OdalariDoldur();
+            foreach (var item in odalar)
+            {
+                RoomViewModel _roomViewModels = new RoomViewModel();
+                _roomViewModels.RoomId = item.RoomId;
+                _roomViewModels.odaTurAdi = item.odaTurAdi;
+                _roomViewModels.roomNumber = item.roomNumber;
+                _roomViewModels.kat = item.kat;
+                roomViews.Add(_roomViewModels);
+
+            }
+
+
+            return Json(new
+            {
+                roomViews
+            });
+        }
+    
+
 
         public IActionResult About()
         {
