@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
 using RezervationSystem.DataAccess.PostgreSQL;
+using RezervationSystem.UI.Models;
 
 namespace RezervationSystem
 {
@@ -27,8 +29,11 @@ namespace RezervationSystem
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<PostgreDbContext>(options =>
-       options.UseSqlServer(Configuration.GetConnectionString("PostgreDbContext")));
+
+       //     services.AddDbContext<PostgreDbContext>(options =>
+       //options.UseNpgsql(Configuration.GetConnectionString("PostgreDbContext")));
+            services.AddDbContext<RezervationContext>(options =>
+       options.UseNpgsql(Configuration.GetConnectionString("PostgreDbContext")));
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -52,16 +57,19 @@ namespace RezervationSystem
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
+            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            
         }
     }
 }

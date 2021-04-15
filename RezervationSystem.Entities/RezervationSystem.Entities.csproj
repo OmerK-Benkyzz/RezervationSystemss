@@ -18,4 +18,8 @@
     <ProjectReference Include="..\RezervationSystem.Core\RezervationSystem.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Concrete\" />
+  </ItemGroup>
+
 </Project>

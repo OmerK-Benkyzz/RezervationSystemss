@@ -6,18 +6,8 @@
     <title>@ViewData["Title"] - RezervationSystem</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
-    <style>
 
+<style>
 
         .iconlayer {
             background-image: url('../images/moshira.png');
@@ -39,8 +29,13 @@
     <link href="http://fonts.googleapis.com/css?family=Playfair+Display:900" rel="stylesheet" type="text/css" />
     <link href="http://fonts.googleapis.com/css?family=Alice:400,700" rel="stylesheet" type="text/css" />
     <!-- Bootstrap -->
-    <link href="~/css/style.css" rel="stylesheet" />
     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/core.css" rel="stylesheet" />
+    <link href="~/css/responsive.css" rel="stylesheet" />
+    <link href="~/css/shortcodes.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+
+
 
 </head>
 <body>
@@ -52,14 +47,14 @@
                     <span class="glyphicon glyphicon-menu-hamburger"></span>
                 </button>
                 <div class="navbar-left iconlayer ">
-                 
+
                 </div>
                 <h2 class="brand brand-name navbar-left"> &nbsp; Moshira Royal Palace</h2>
             </div>
             <div class="collapse navbar-collapse navbar-right" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <li><a href="~/Home/Index"><i class="fa fa-fw fa-home"></i> Ana Sayfa</a></li>
-                    <li><a href="~/Login/Login"><i class="fa fa-fw fa-user"></i> Yönetici Girişi</a></li>
+                    <li><a href="~/Identity/Account/Login"><i class="fa fa-fw fa-user"></i> Yönetici Girişi</a></li>
                 </ul>
             </div>
         </div>
@@ -74,26 +69,25 @@
         </footer>
     </div>
 
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-    </environment>
-    <environment exclude="Development">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
-        </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
+    @section scripts{
+
+        <script src="~/js/animated-headlines.js"></script>
+        <script src="~/js/bootstrap.min.js"></script>
+        <script src="~/js/isotope.pkgd.min.js"></script>
+        <script src="~/js/jquery.counterup.min.js"></script>
+        <script src="~/js/jquery.magnific-popup.js"></script>
+        <script src="~/js/lettering.js"></script>
+        <script src="~/js/mailchimp.js"></script>
+        <script src="~/js/main.js"></script>
+        <script src="~/js/modernizr-2.8.3.min.js"></script>
+        <script src="~/js/owl.carousel.min.js"></script>
+        <script src="~/js/packery-mode.pkgd.min.js"></script>
+        <script src="~/js/parallax.js"></script>
+        <script src="~/js/plugins.js"></script>
+        <script src="~/js/textilate.js"></script>
+        <script src="~/js/waypoints.min.js"></script>
+
+    }
 
     @RenderSection("Scripts", required: false)
 </body>
