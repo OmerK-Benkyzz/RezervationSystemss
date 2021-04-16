@@ -1,10 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
-    body {
-        background-color:rgba(237, 193, 193, 0.95)
-    }
+ 
 
     .scene {
         perspective: 800px;
@@ -38,9 +37,11 @@
         background-size: cover;
         background-repeat: no-repeat;
     }
+
     body {
         background-image: url(http://api.thumbr.it/whitenoise-361x370.png?background=ffffffff&noise=5c5c5c&density=13&opacity=62);
     }
+
     .back {
         transform: translateZ(-150px) rotateX(180deg);
         background-image: url('../images/o3.jpg');
@@ -71,11 +72,11 @@
         background-image: url('../images/o6.jpg');
     }
 
-    .text-update{
-
-        font-family:Cambria;
-        font-size:26px;
+    .text-update {
+        font-family: Cambria;
+        font-size: 26px;
     }
+
     @@keyframes rotate {
         0% {
             transform: rotateX(0);
@@ -114,109 +115,150 @@
         }
     }
 </style>
-<div class="container-fluid ">
-
-    <div class="col-lg-7" >
-        <div class="container-fluid">
-            <div class="row text-center text-justify">
-               <br />
-               <br />
-               <br />
-                <p class="text-update">
-                    Moshira Royal Palace 2004 yılında kurulan köklü temellere ve temellerinde hizmet anlayışına sahip
-                    bir yönetim anlayışına sahiptir.Havuz,spa,sauna 7/24 Açık büfe ve 2 havuz ile size hizmet vermekteyiz.
-                    Moshira Royal Palace ile kendinizi bir kral gibi hissedeceksiniz.
-                    Rezervasyona bekleniyorsunuz !
-                </p>                    
-
-            </div>
+<!--[if lt IE 8]>
+     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+ <![endif]-->
+<!-- Pre Loader
+============================================ -->
+<div class="preloader">
+    <div class="loading-center">
+        <div class="loading-center-absolute">
+            <div class="object object_one"></div>
+            <div class="object object_two"></div>
+            <div class="object object_three"></div>
         </div>
-
     </div>
-    <div class="col-lg-5">
-        <img src="~/images/moshirabg.jpg" />
-    </div>
-
 </div>
-<div class="container-fluid">
-    <div class="col-lg-12">
-        <div class="row">
-            <div id="booking" class="section">
-                <div class="section-left">
-                    <div class="scene">
-                        <div class="cube">
-                            <div class="side back"></div>
-                            <div class="side left"></div>
-                            <div class="side right"></div>
-                            <div class="side top"></div>
-                            <div class="side bottom"></div>
-                            <div class="side front"></div>
+<div class="wrapper">
+    <!--Header section start-->
+    <div class="header-section">
+        <div class="bg-opacity"></div>
+        <div class="top-header sticky-header">
+            <div class="top-header-inner">
+                <div class="container">
+                    <div class="mgea-full-width">
+                        <div class="row">
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class="logo mt-15">
+                                    <a href="index.html">@*<img src="images/logo/logo.png" alt="">*@</a>
+                                </div>
+                            </div>
+                          
                         </div>
                     </div>
                 </div>
-                <div class="section-center">
-                    <div class="container">
-                        <div class="row">
+            </div>
+            <!-- Mobile menu start -->
+            <div class="mobile-menu-area hidden-lg hidden-md">
+                <div class="container">
+                    <div class="col-md-12">
+                        <nav id="dropdown">
+                            <ul>
+                                <li><a href="index.html">Anasayfa</a></li>
+                                <li><a href="about-us.html">Hakkında</a></li>
+                                <li><a href="gallery.html">Galeri</a></li>
+                                <li>
+                                    <a href="#">pages</a>
+                                    <ul>
+                                        <li><a href="404.html">404</a></li>
+                                        <li><a href="booking-information.html">Rezervasyon Bilgileri</a></li>
+                                        <li><a href="personal-information.html">Personal Bilgileri</a></li>
+                                        <li><a href="payment-information.html">Ödeme Bilgileri</a></li>
+                                        <li><a href="booking-done.html">rezervasyon tamamlandı</a></li>
+                                        <li><a href="room-booking.html">Oda rezervasyonu</a></li>
+                                        <li><a href="news.html">Haberler</a></li>
+                                        <li><a href="gallery.html">Galeri</a></li>
+                                        <li><a href="staff.html">Personel</a></li>
+                                        <li><a href="our-room.html">Odalar</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="contact-us.html">Iletişim</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile menu end -->
+        </div>
+        <!--Welcome secton-->
+        <div class="welcome-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-5">
+                        <div class="booking-box">
+                            <div class="booking-title">
+                                <h3>Bir oda ayırtın</h3>
+                                <p></p>
+                            </div>
                             <div class="booking-form">
-                                <div class="booking-bg">
-                                    <div class="form-header">
-                                        <h2>Rezervasyonunuzu Yapalım</h2>
-                                        <p>Moshira Royal Palace Otelimizde sizi ağırlamaktan büyük onur duyarız.Sizde gelin ve hemen yerinizi ayırtın.</p>
+                                <form action="#">
+                                    <div class="b-date arrive mb-15">
+                                        <input class="date-picker" type="text" placeholder="Giriş tarihi">
+                                        <i class="mdi mdi-calendar-text"></i>
                                     </div>
-                                </div>
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <span class="form-label">Giriş Günü</span>
-                                                <input class="form-control" type="date" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <span class="form-label">Çıkış Günü</span>
-                                                <input class="form-control" type="date" required>
-                                            </div>
-                                        </div>
+                                    <div class="b-date departure mb-15">
+                                        <input class="date-picker" type="text" placeholder="Ayrılış tarihi">
+                                        <i class="mdi mdi-calendar-text"></i>
                                     </div>
-                                    <div class="form-group">
-                                        <span class="form-label">Oda Tipi</span>
-                                        <select id="odasecimi" class="form-control" required>
-                                            <option value="" selected hidden>Seçiniz</option>
-                                            <option value="durum1">Özel Oda(1-2 Ziyaretçi)</option>
-                                            <option value="durum2">Aile Odası (1-5 Ziyaretçi)</option>
-                                            <option value="durum3" id="durum333">Balayı Süiti</option>
+                                    <div class="select-book mb-15">
+                                        <select name="book" class="select-booking">
+                                            <option value="" selected>Yetişkin</option>
+                                            <option value="1">Genç</option>
+                                            <option value="1">Yetişkin</option>
                                         </select>
-                                        <span class="select-arrow"></span>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <span class="form-label">Yetişkin</span>
-                                                <select id="yetiskinval" class="form-control kisisecimler">
-                                                    <option>1</option>
-                                                    <option value="suiticin"> 2</option>
-                                                    <option>3</option>
-                                                </select>
-                                                <span class="select-arrow"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <span class="form-label">Çocuk</span>
-                                                <select id="cocukval" class="form-control kisisecimler">
-                                                    <option value="cocuksuit">0</option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                </select>
-                                                <span class="select-arrow"></span>
-                                            </div>
-                                        </div>
+                                    <div class="select-book  mb-30">
+                                        <select name="book" class="select-booking">
+                                            <option value="" selected>Odalar</option>
+                                            <option value="1">Oda 101</option>
+                                            <option value="1">Oda 102</option>
+                                        </select>
                                     </div>
-
-                                    <div class="form-btn">
-                                        <button class="submit-btn" id="deneme1">Rezervasyon Oluştur</button>
+                                    <div class="submit-form">
+                                        <button type="submit">Müsaitliği kontrol et</button>
                                     </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-sm-7">
+                        <div class="welcome-text">
+                            <h2>
+                                <span>Hoşgeldiniz</span> <span class="coloring">Chondo Hotel</span>
+                            </h2>
+                            <h1 class="cd-headline clip">
+                                <span>EN İYİ</span>
+                                <span class="cd-words-wrapper coloring">
+                                    <b class="is-visible"> LOKASYON</b>
+                                    <b>Odalar</b>
+                                    <b>Yerler</b>
+                                </span>
+                            </h1>
+                            <p class="welcome-desc"> Chondo Hotelin eşsiz ayrıcılıklarıyla muhteşem bir konaklama.</p>
+                            <div class="explore">
+                                <a href="#">Keşfedin</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header section end -->
+    <!-- searchbar Start -->
+    <div class="search-bar animated slideOutUp">
+        <div class="table">
+            <div class="table-cell">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2">
+                            <div class="search-form-wrap">
+                                <button class="close-search"><i class="mdi mdi-close"></i></button>
+                                <form action="#">
+                                    <input type="text" placeholder="Search here..." value="Search here..." />
+                                    <button class="search-button" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
                                 </form>
                             </div>
                         </div>
@@ -224,32 +266,534 @@
                 </div>
             </div>
         </div>
-
     </div>
+    <!-- search bar End -->
+    <!--About Section Title start-->
+    <div class="about-section text-center ptb-80 white_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title mb-80">
+                        <h2>HAKKINDA <span>Chondo</span></h2> <br> <br>
+                        <p>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="about-chondo">
+                        <div class="about-member">
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--About Section end-->
+    <!--Our Room start-->
+    <div class="our-room text-center ptb-80 white-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title mb-75">
+                        <h2><span>Odalarımız</span></h2>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            <div class="our-room-show">
+                <div class="row">
+                    <div class="carousel-list">
+                        <div class="col-md-4">
+                            <div class="single-room">
+                                <div class="room-img">
+                                    <a href="#"><img src="images/room/room1.jpg" alt=""></a>
+                                </div>
+                                <div class="room-desc">
+                                    <div class="room-name">
+                                        <h3><a href="#">Tek kişilik oda</a></h3>
+                                    </div>
+                                    <div class="room-rent">
+                                        <h5>€ 124.99 / <span>Gecelik</span></h5>
+                                    </div>
+                                    <div class="room-book">
+                                        <a href="#">Rezerve Et</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-room">
+                                <div class="room-img">
+                                    <a href="#"><img src="images/room/room2.jpg" alt=""></a>
+                                </div>
+                                <div class="room-desc">
+                                    <div class="room-name">
+                                        <h3><a href="#">Superlüks oda</a></h3>
+                                    </div>
+                                    <div class="room-rent">
+                                        <h5>€ 250 / <span>Gecelik</span></h5>
+                                    </div>
+                                    <div class="room-book">
+                                        <a href="#">Rezerve Et</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-room">
+                                <div class="room-img">
+                                   <a href="#"><img src="images/room/room3.jpg" alt=""></a>
+                                </div>
+                                <div class="room-desc">
+                                    <div class="room-name">
+                                        <h3><a href="#">Delüks oda</a></h3>
+                                    </div>
+                                    <div class="room-rent">
+                                        <h5>€ 150 / <span>Gecelik</span></h5>
+                                    </div>
+                                    <div class="room-book">
+                                        <a href="#">Rezerve Et</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Our room end-->
+    <!--Our services start-->
+    <div class="our-sevices text-center ptb-80 white_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title mb-80">
+                        <h2><span>Hizmetlerimiz</span></h2>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="our-services-list">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-services">
+                            <div class="services-img">
+                              @*  <img src="images/services/services1.jpg" alt="">*@
+                                <div class="services-title">
+                                    <h2>Kahvaltı & açık büfe</h2>
+                                </div>
+                                <div class="services-hover-desc">
+                                    <div class="services-hover-inner">
+                                        <div class="services-hover-table">
+                                            <div class="services-hover-table-cell">
+                                                <h2>Kahvaltı & açık büfe</h2>
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-services">
+                            <div class="services-img">
+                         @*       <img src="images/services/services2.jpg" alt="">*@
+                                <div class="services-title">
+                                    <h2>sauna & havuz</h2>
+                                </div>
+                                <div class="services-hover-desc">
+                                    <div class="services-hover-inner">
+                                        <div class="services-hover-table">
+                                            <div class="services-hover-table-cell">
+                                                <h2>sauna & kapalı havuz</h2>
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-services">
+                            <div class="services-img">
+                              @*  <img src="images/services/services3.jpg" alt="">*@
+                                <div class="services-title">
+                                    <h2>7/24 resepsiyon</h2>
+                                </div>
+                                <div class="services-hover-desc">
+                                    <div class="services-hover-inner">
+                                        <div class="services-hover-table">
+                                            <div class="services-hover-table-cell">
+                                                <h2>  7/24 resepsiyon</</h2>
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-services">
+                            <div class="services-img">
+                                @*<img src="images/services/services4.jpg" alt="">*@
+                                <div class="services-title">
+                                    <h2>Şehir turu</h2>
+                                </div>
+                                <div class="services-hover-desc">
+                                    <div class="services-hover-inner">
+                                        <div class="services-hover-table">
+                                            <div class="services-hover-table-cell">
+                                                <h2>Şehir turu</h2>
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Our services end-->
+    <!--Our staff start-->
+    <div class="our-staff text-center pb-80 white_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title mb-80">
+                        <h2><span>Personelimiz</span></h2>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            <div class="staff-list">
+                <div class="row">
+                    <div class="carousel-list">
+                        <div class="col-md-4">
+                            <div class="single-staff">
+                                <div class="sraff-inner">
+                                    @*  <img src="images/staff/staff1.jpg" alt="">**@
+                                    <div class="staff-title">
+                                        <span class="plus"></span>
+                                        <h2>Y.müdür</h2>
+                                        <h5>otel personeli</h5>
+                                    </div>
+                                    <div class="staff-hover-desc">
+                                        <h2>y.müdür</h2>
+                                        <h5>Otel personeli</h5>
+                                        <p></p>
+                                        <div class="scoial_icons">
+                                            <a href="#"><i class="mdi mdi-facebook"></i></a>
+                                            <a href="#"><i class="mdi mdi-rss"></i></a>
+                                            <a href="#"><i class="mdi mdi-google-plus"></i></a>
+                                            <a href="#"><i class="mdi mdi-instagram"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-staff">
+                                <div class="sraff-inner">
+                                  @*@*  <img src="images/staff/staff2.jpg" alt="">*@
+                                    <div class="staff-title">
+                                        <span class="plus"></span>
+                                        <h2>müdürümüz</h2>
+                                        <h5>otel müdürü</h5>
+                                    </div>
+                                    <div class="staff-hover-desc">
+                                        <h2>müdürümüz </h2>
+                                        <h5>otel müdürü</h5>
+                                        <p></p>
+                                        <div class="scoial_icons">
+                                            <a href="#"><i class="mdi mdi-facebook"></i></a>
+                                            <a href="#"><i class="mdi mdi-rss"></i></a>
+                                            <a href="#"><i class="mdi mdi-google-plus"></i></a>
+                                            <a href="#"><i class="mdi mdi-instagram"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-staff">
+                                <div class="sraff-inner">
+                                  @*  <img src="images/staff/staff3.jpg" alt="">*@
+                                    <div class="staff-title">
+                                        <span class="plus"></span>
+                                        <h2>Şefimiz</h2>
+                                        <h5>Mutfak Şefi</h5>
+                                    </div>
+                                    <div class="staff-hover-desc">
+                                        <h2>Şefimiz</h2>
+                                        <h5>Mutfak Şefi</h5>
+                                        <p></p>
+                                        <div class="scoial_icons">
+                                            <a href="#"><i class="mdi mdi-facebook"></i></a>
+                                            <a href="#"><i class="mdi mdi-rss"></i></a>
+                                            <a href="#"><i class="mdi mdi-google-plus"></i></a>
+                                            <a href="#"><i class="mdi mdi-instagram"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-staff">
+                                <div class="sraff-inner">
+                                   @* <img src="images/staff/staff1.jpg" alt="">*@
+                                    <div class="staff-title">
+                                        <span class="plus"></span>
+                                        <h2>Soleman</h2>
+                                        <h5>hotel staff</h5>
+                                    </div>
+                                    <div class="staff-hover-desc">
+                                        <h2>Soleman</h2>
+                                        <h5>hotel staff</h5>
+                                        <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr.</p>
+                                        <div class="scoial_icons">
+                                            <a href="#"><i class="mdi mdi-facebook"></i></a>
+                                            <a href="#"><i class="mdi mdi-rss"></i></a>
+                                            <a href="#"><i class="mdi mdi-google-plus"></i></a>
+                                            <a href="#"><i class="mdi mdi-instagram"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-staff">
+                                <div class="sraff-inner">
+                                    <img src="images/staff/staff2.jpg" alt="">
+                                    <div class="staff-title">
+                                        <span class="plus"></span>
+                                        <h2>Soleman</h2>
+                                        <h5>hotel staff</h5>
+                                    </div>
+                                    <div class="staff-hover-desc">
+                                        <h2>Soleman</h2>
+                                        <h5>hotel staff</h5>
+                                        <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr.</p>
+                                        <div class="scoial_icons">
+                                            <a href="#"><i class="mdi mdi-facebook"></i></a>
+                                            <a href="#"><i class="mdi mdi-rss"></i></a>
+                                            <a href="#"><i class="mdi mdi-google-plus"></i></a>
+                                            <a href="#"><i class="mdi mdi-instagram"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-staff">
+                                <div class="sraff-inner">
+                                    @*<img src="images/staff/staff3.jpg" alt="">*@
+                                    <div class="staff-title">
+                                        <span class="plus"></span>
+                                        <h2>Soleman</h2>
+                                        <h5>hotel staff</h5>
+                                    </div>
+                                    <div class="staff-hover-desc">
+                                        <h2>Soleman</h2>
+                                        <h5>hotel staff</h5>
+                                        <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr.</p>
+                                        <div class="scoial_icons">
+                                            <a href="#"><i class="mdi mdi-facebook"></i></a>
+                                            <a href="#"><i class="mdi mdi-rss"></i></a>
+                                            <a href="#"><i class="mdi mdi-google-plus"></i></a>
+                                            <a href="#"><i class="mdi mdi-instagram"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-staff">
+                                <div class="sraff-inner">
+                                   @* <img src="images/staff/staff1.jpg" alt="">*@
+                                    <div class="staff-title">
+                                        <span class="plus"></span>
+                                        <h2>Soleman</h2>
+                                        <h5>hotel staff</h5>
+                                    </div>
+                                    <div class="staff-hover-desc">
+                                        <h2>Soleman</h2>
+                                        <h5>hotel staff</h5>
+                                        <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr.</p>
+                                        <div class="scoial_icons">
+                                            <a href="#"><i class="mdi mdi-facebook"></i></a>
+                                            <a href="#"><i class="mdi mdi-rss"></i></a>
+                                            <a href="#"><i class="mdi mdi-google-plus"></i></a>
+                                            <a href="#"><i class="mdi mdi-instagram"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-staff">
+                                <div class="sraff-inner">
+                                  @*  <img src="images/staff/staff2.jpg" alt="">*@
+                                    <div class="staff-title">
+                                        <span class="plus"></span>
+                                        <h2>Soleman</h2>
+                                        <h5>Otel Müdürü</h5>
+                                    </div>
+                                    <div class="staff-hover-desc">
+                                        <h2>Soleman</h2>
+                                        <h5>Otel Görevlisi</h5>
+                                        <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr.</p>
+                                        <div class="scoial_icons">
+                                            <a href="#"><i class="mdi mdi-facebook"></i></a>
+                                            <a href="#"><i class="mdi mdi-rss"></i></a>
+                                            <a href="#"><i class="mdi mdi-google-plus"></i></a>
+                                            <a href="#"><i class="mdi mdi-instagram"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-staff">
+                                <div class="sraff-inner">
+                                    @*<img src="images/staff/staff3.jpg" alt="">*@
+                                    <div class="staff-title">
+                                        <span class="plus"></span>
+                                        <h2>Soleman</h2>
+                                        <h5>Otel GÖrevlisi</h5>
+                                    </div>
+                                    <div class="staff-hover-desc">
+                                        <h2>Soleman</h2>
+                                        <h5>hotel staff</h5>
+                                        <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr.</p>
+                                        <div class="scoial_icons">
+                                            <a href="#"><i class="mdi mdi-facebook"></i></a>
+                                            <a href="#"><i class="mdi mdi-rss"></i></a>
+                                            <a href="#"><i class="mdi mdi-google-plus"></i></a>
+                                            <a href="#"><i class="mdi mdi-instagram"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Our staff end-->
+    <!--Testimonial end-->
+    <!--Our gallery start-->
+  -
+    <div class="hotel-cmmunities ptb-100 text-center">
+        <div class="community-bg-opacity"></div>
+        <div class="container">
+            <div class="row">
+                <div class="communities-list">
+                    <div class="single-commmunites">
+                        <h1 class="counter">500</h1>
+                        <h2>Müşteri</h2>
+                    </div>
+                    <div class="single-commmunites">
+                        <h1 class="counter">200</h1>
+                        <h2>Ünlüler</h2>
+                    </div>
+                    <div class="single-commmunites">
+                        <h1 class="counter">850</h1>
+                        <h2>Dönüş</h2>
+                    </div>
+                    <div class="single-commmunites hidden-xs">
+                        <h1 class="counter">1250</h1>
+                        <h2>Mutlu İnsan</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Hotel communities end-->
+    <!--hotel team start-->
+    <div class="hotel-team pt-100 white_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="team-brand pb-100">
+                        <div class="single-team">
+                            <a href="#">@*<img src="images/brand/b-1.jpg" alt="">*@</a>
+                        </div>
+                        <div class="single-team">
+                            <a href="#">@*<img src="images/brand/b-4.jpg" alt="">*@</a>
+                        </div>
+                        <div class="single-team">
+                            <a href="#">@*<img src="images/brand/b-3.jpg" alt="">*@</a>
+                        </div>
+                        <div class="single-team">
+                            <a href="#">@*<img src="images/brand/b-4.jpg" alt="">*@</a>
+                        </div>
+                        <div class="single-team">
+                            <a href="#">@*<img src="images/brand/b-5.jpg" alt="">*@</a>
+                        </div>
+                        <div class="single-team">
+                            <a href="#">@*<img src="images/brand/b-1.jpg" alt="">*@</a>
+                        </div>
+                        <div class="single-team">
+                            <a href="#">@*<img src="images/brand/b-4.jpg" alt="">*@</a>
+                        </div>
+                        <div class="single-team">
+                            <a href="#">@*<img src="images/brand/b-3.jpg" alt="">*@</a>
+                        </div>
+                        <div class="single-team">
+                            <a href="#">@*<img src="images/brand/b-4.jpg" alt="">*@</a>
+                        </div>
+                        <div class="single-team">
+                            <a href="#">@*<img src="images/brand/b-5.jpg" alt="">*@</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         
+        </div>
+    </div>
+    <!--hotel team end-->
+    <!--Footer start -->
+ 
+    <!-- Footer end -->
 </div>
 
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-<script>
-    var odaTuru = document.querySelector("#durum333");
-    var secim1 = document.querySelector("#yetiskinval");
-    var secim2 = document.querySelector("#cocukval");
-    var odalist = document.querySelector("#odasecimi");
-    odalist.addEventListener('change', analyseUserSelection);
-    function analyseUserSelection(e) {
-        if (odaTuru.selected) {
-            secim1.disabled = true;
-            secim2.disabled = true;
-            $(secim1).val('suiticin');
-            $(secim2).val('cocuksuit');
 
-        } else if (!odaTuru.selected) {
-            secim1.removeAttribute('disabled');
-            secim2.removeAttribute('disabled');
-        }
-    }
+
+@section Scripts{ 
+
+<script>
+        //var odaTuru = document.querySelector("#durum333");
+        //var secim1 = document.querySelector("#yetiskinval");
+        //var secim2 = document.querySelector("#cocukval");
+        //var odalist = document.querySelector("#odasecimi");
+        //odalist.addEventListener('change', analyseUserSelection);
+        //function analyseUserSelection(e) {
+        //    if (odaTuru.selected) {
+        //        secim1.disabled = true;
+        //        secim2.disabled = true;
+        //        $(secim1).val('suiticin');
+        //        $(secim2).val('cocuksuit');
+
+        //    } else if (!odaTuru.selected) {
+        //        secim1.removeAttribute('disabled');
+        //        secim2.removeAttribute('disabled');
+        //    }
+        //}
 
 
 </script>
+}   
 
