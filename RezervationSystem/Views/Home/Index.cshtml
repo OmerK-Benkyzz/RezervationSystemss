@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
- 
+
 
     .scene {
         perspective: 800px;
@@ -143,7 +143,7 @@
                                     <a href="index.html">@*<img src="images/logo/logo.png" alt="">*@</a>
                                 </div>
                             </div>
-                          
+
                         </div>
                     </div>
                 </div>
@@ -181,7 +181,7 @@
             <!-- Mobile menu end -->
         </div>
         <!--Welcome secton-->
-        <div class="welcome-section">
+        <div class="welcome-section" style="background-color:currentColor">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-sm-5">
@@ -201,14 +201,12 @@
                                         <i class="mdi mdi-calendar-text"></i>
                                     </div>
                                     <div class="select-book mb-15">
-                                        <select name="book" class="select-booking">
-                                            <option value="" selected>Yetişkin</option>
-                                            <option value="1">Genç</option>
-                                            <option value="1">Yetişkin</option>
+                                        <select name="book" id="odatype" @*class="select-booking" *@>
+                                            <option value="default" selected>Oda Türünü Seçiniz</option>
                                         </select>
                                     </div>
                                     <div class="select-book  mb-30">
-                                        <select name="book" class="select-booking">
+                                        <select name="book" id="odalar" @*class="select-booking" *@>
                                             <option value="" selected>Odalar</option>
                                             <option value="1">Oda 101</option>
                                             <option value="1">Oda 102</option>
@@ -224,17 +222,17 @@
                     <div class="col-md-8 col-sm-7">
                         <div class="welcome-text">
                             <h2>
-                                <span>Hoşgeldiniz</span> <span class="coloring">Chondo Hotel</span>
+                                <span class="coloring">Moshira Royal PALACE'a</span>  <span>Hoşgeldiniz</span>
                             </h2>
                             <h1 class="cd-headline clip">
                                 <span>EN İYİ</span>
                                 <span class="cd-words-wrapper coloring">
-                                    <b class="is-visible"> LOKASYON</b>
+                                    <b class="is-visible"> Lokasyon</b>
                                     <b>Odalar</b>
                                     <b>Yerler</b>
                                 </span>
                             </h1>
-                            <p class="welcome-desc"> Chondo Hotelin eşsiz ayrıcılıklarıyla muhteşem bir konaklama.</p>
+                            <p class="welcome-desc"> Moshira Royal Palacenin ayrıcılıklarıyla muhteşem bir konaklamaya hazır olun.</p>
                             <div class="explore">
                                 <a href="#">Keşfedin</a>
                             </div>
@@ -274,8 +272,17 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-title mb-80">
-                        <h2>HAKKINDA <span>Chondo</span></h2> <br> <br>
+                        <h2>HAKKINDA <span>Moshira Royal Palace</span></h2> <br> <br>
                         <p>
+                            Moshira Royal Palace, Kayaoğlu Otelcilik Turizm A.Ş. iştiraki olup Varyos ve Klase otelleri zincirinin bir halkası olup; profesyonel hizmet anlayışı ile Türk turizmine ve yöre halkına en iyi şekilde hizmet etmeyi prensip edinmiştir. Otelimize geldiğiniz andan itibaren kendinizi evinizde gibi hissedeceksiniz.Güleryüzlü personelimiz sizi en iyi şekilde misafir etmek için hizmetinizdedir.
+
+                            Misyonumuz…
+                            Yerli ve yabancı konuklarımıza en iyi hizmeti kaliteli bir şekilde sunmaktır. Muğlamızın ve ülkemizin doğal, tarihi, kültürel miras ve değerlerini korumaya odaklı turizm amaçlı; rahat, kaliteli ve güleryüzlü hizmeti; yükselen konuk memnuniyetini sağlamak ve sürdürmek.
+
+                            Her zaman “Rahatınız bizim için önemli” sloganımızla temel ilkelerimizi dikkate alarak topluma en iyi hizmeti vereceğiz.
+
+                            Vizyonumuz…
+                            Yerli ve yabancı konuklarımızın ve seyahat firmalarının ilk aklına gelen bir marka olmak ve bu markayı misyonumuzu ve temel ilkelerimizi benimseyerek lider konumunda taşımaktır.
                         </p>
                     </div>
                 </div>
@@ -291,12 +298,13 @@
     </div>
     <!--About Section end-->
     <!--Our Room start-->
-    <div class="our-room text-center ptb-80 white-bg">
+    <div class="our-room text-center ptb-80">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-title mb-75">
                         <h2><span>Odalarımız</span></h2>
+                        <hr />
                         <p></p>
                     </div>
                 </div>
@@ -317,7 +325,7 @@
                                         <h5>€ 124.99 / <span>Gecelik</span></h5>
                                     </div>
                                     <div class="room-book">
-                                        <a href="#">Rezerve Et</a>
+                                        <a id="odaTekKisilik" data-toggle="modal" data-target="#modalTekKisilik">Rezerve Et</a>
                                     </div>
                                 </div>
                             </div>
@@ -335,7 +343,7 @@
                                         <h5>€ 250 / <span>Gecelik</span></h5>
                                     </div>
                                     <div class="room-book">
-                                        <a href="#">Rezerve Et</a>
+                                        <a id="odaKralDairesi" data-toggle="modal" data-target="#modalKralDairesi">Rezerve Et</a>
                                     </div>
                                 </div>
                             </div>
@@ -343,22 +351,22 @@
                         <div class="col-md-4">
                             <div class="single-room">
                                 <div class="room-img">
-                                   <a href="#"><img src="images/room/room3.jpg" alt=""></a>
+                                    <a href="#"><img src="images/room/room3.jpg" alt=""></a>
                                 </div>
                                 <div class="room-desc">
                                     <div class="room-name">
-                                        <h3><a href="#">Delüks oda</a></h3>
+                                        <h3><a href="#">Çift Kişilik Oda</a></h3>
                                     </div>
                                     <div class="room-rent">
-                                        <h5>€ 150 / <span>Gecelik</span></h5>
+                                        <h5>€ 190 / <span>Gecelik</span></h5>
                                     </div>
                                     <div class="room-book">
-                                        <a href="#">Rezerve Et</a>
+                                        <a id="odaCiftKisilik" data-toggle="modal" data-target="#modalCiftKisilik">Rezerve Et</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                
+
                     </div>
                 </div>
             </div>
@@ -366,104 +374,7 @@
     </div>
     <!--Our room end-->
     <!--Our services start-->
-    <div class="our-sevices text-center ptb-80 white_bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="section-title mb-80">
-                        <h2><span>Hizmetlerimiz</span></h2>
-                        <p></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="our-services-list">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="single-services">
-                            <div class="services-img">
-                              @*  <img src="images/services/services1.jpg" alt="">*@
-                                <div class="services-title">
-                                    <h2>Kahvaltı & açık büfe</h2>
-                                </div>
-                                <div class="services-hover-desc">
-                                    <div class="services-hover-inner">
-                                        <div class="services-hover-table">
-                                            <div class="services-hover-table-cell">
-                                                <h2>Kahvaltı & açık büfe</h2>
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="single-services">
-                            <div class="services-img">
-                         @*       <img src="images/services/services2.jpg" alt="">*@
-                                <div class="services-title">
-                                    <h2>sauna & havuz</h2>
-                                </div>
-                                <div class="services-hover-desc">
-                                    <div class="services-hover-inner">
-                                        <div class="services-hover-table">
-                                            <div class="services-hover-table-cell">
-                                                <h2>sauna & kapalı havuz</h2>
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="single-services">
-                            <div class="services-img">
-                              @*  <img src="images/services/services3.jpg" alt="">*@
-                                <div class="services-title">
-                                    <h2>7/24 resepsiyon</h2>
-                                </div>
-                                <div class="services-hover-desc">
-                                    <div class="services-hover-inner">
-                                        <div class="services-hover-table">
-                                            <div class="services-hover-table-cell">
-                                                <h2>  7/24 resepsiyon</</h2>
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="single-services">
-                            <div class="services-img">
-                                @*<img src="images/services/services4.jpg" alt="">*@
-                                <div class="services-title">
-                                    <h2>Şehir turu</h2>
-                                </div>
-                                <div class="services-hover-desc">
-                                    <div class="services-hover-inner">
-                                        <div class="services-hover-table">
-                                            <div class="services-hover-table-cell">
-                                                <h2>Şehir turu</h2>
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+ 
     <!--Our services end-->
     <!--Our staff start-->
     <div class="our-staff text-center pb-80 white_bg">
@@ -482,85 +393,16 @@
                         <div class="col-md-4">
                             <div class="single-staff">
                                 <div class="sraff-inner">
-                                    @*  <img src="images/staff/staff1.jpg" alt="">**@
+                                    <img src="images/staff/staff1.jpg" alt="">
                                     <div class="staff-title">
                                         <span class="plus"></span>
-                                        <h2>Y.müdür</h2>
-                                        <h5>otel personeli</h5>
+                                        <h2>Carlos Abblosaw</h2>
+                                        <h5>Rezervasyon Sorumlusu</h5>
                                     </div>
                                     <div class="staff-hover-desc">
-                                        <h2>y.müdür</h2>
-                                        <h5>Otel personeli</h5>
-                                        <p></p>
-                                        <div class="scoial_icons">
-                                            <a href="#"><i class="mdi mdi-facebook"></i></a>
-                                            <a href="#"><i class="mdi mdi-rss"></i></a>
-                                            <a href="#"><i class="mdi mdi-google-plus"></i></a>
-                                            <a href="#"><i class="mdi mdi-instagram"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="single-staff">
-                                <div class="sraff-inner">
-                                  @*@*  <img src="images/staff/staff2.jpg" alt="">*@
-                                    <div class="staff-title">
-                                        <span class="plus"></span>
-                                        <h2>müdürümüz</h2>
-                                        <h5>otel müdürü</h5>
-                                    </div>
-                                    <div class="staff-hover-desc">
-                                        <h2>müdürümüz </h2>
-                                        <h5>otel müdürü</h5>
-                                        <p></p>
-                                        <div class="scoial_icons">
-                                            <a href="#"><i class="mdi mdi-facebook"></i></a>
-                                            <a href="#"><i class="mdi mdi-rss"></i></a>
-                                            <a href="#"><i class="mdi mdi-google-plus"></i></a>
-                                            <a href="#"><i class="mdi mdi-instagram"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="single-staff">
-                                <div class="sraff-inner">
-                                  @*  <img src="images/staff/staff3.jpg" alt="">*@
-                                    <div class="staff-title">
-                                        <span class="plus"></span>
-                                        <h2>Şefimiz</h2>
-                                        <h5>Mutfak Şefi</h5>
-                                    </div>
-                                    <div class="staff-hover-desc">
-                                        <h2>Şefimiz</h2>
-                                        <h5>Mutfak Şefi</h5>
-                                        <p></p>
-                                        <div class="scoial_icons">
-                                            <a href="#"><i class="mdi mdi-facebook"></i></a>
-                                            <a href="#"><i class="mdi mdi-rss"></i></a>
-                                            <a href="#"><i class="mdi mdi-google-plus"></i></a>
-                                            <a href="#"><i class="mdi mdi-instagram"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="single-staff">
-                                <div class="sraff-inner">
-                                   @* <img src="images/staff/staff1.jpg" alt="">*@
-                                    <div class="staff-title">
-                                        <span class="plus"></span>
-                                        <h2>Soleman</h2>
-                                        <h5>hotel staff</h5>
-                                    </div>
-                                    <div class="staff-hover-desc">
-                                        <h2>Soleman</h2>
-                                        <h5>hotel staff</h5>
-                                        <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr.</p>
+                                        <h2>Carlos Abblosaw</h2>
+                                        <h5>Rezervasyon Sorumlusu</h5>
+                                        <p>Güler yüzlü hizmet için sizi kapıda bekliyoruz</p>
                                         <div class="scoial_icons">
                                             <a href="#"><i class="mdi mdi-facebook"></i></a>
                                             <a href="#"><i class="mdi mdi-rss"></i></a>
@@ -577,82 +419,13 @@
                                     <img src="images/staff/staff2.jpg" alt="">
                                     <div class="staff-title">
                                         <span class="plus"></span>
-                                        <h2>Soleman</h2>
-                                        <h5>hotel staff</h5>
-                                    </div>
-                                    <div class="staff-hover-desc">
-                                        <h2>Soleman</h2>
-                                        <h5>hotel staff</h5>
-                                        <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr.</p>
-                                        <div class="scoial_icons">
-                                            <a href="#"><i class="mdi mdi-facebook"></i></a>
-                                            <a href="#"><i class="mdi mdi-rss"></i></a>
-                                            <a href="#"><i class="mdi mdi-google-plus"></i></a>
-                                            <a href="#"><i class="mdi mdi-instagram"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="single-staff">
-                                <div class="sraff-inner">
-                                    @*<img src="images/staff/staff3.jpg" alt="">*@
-                                    <div class="staff-title">
-                                        <span class="plus"></span>
-                                        <h2>Soleman</h2>
-                                        <h5>hotel staff</h5>
-                                    </div>
-                                    <div class="staff-hover-desc">
-                                        <h2>Soleman</h2>
-                                        <h5>hotel staff</h5>
-                                        <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr.</p>
-                                        <div class="scoial_icons">
-                                            <a href="#"><i class="mdi mdi-facebook"></i></a>
-                                            <a href="#"><i class="mdi mdi-rss"></i></a>
-                                            <a href="#"><i class="mdi mdi-google-plus"></i></a>
-                                            <a href="#"><i class="mdi mdi-instagram"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="single-staff">
-                                <div class="sraff-inner">
-                                   @* <img src="images/staff/staff1.jpg" alt="">*@
-                                    <div class="staff-title">
-                                        <span class="plus"></span>
-                                        <h2>Soleman</h2>
-                                        <h5>hotel staff</h5>
-                                    </div>
-                                    <div class="staff-hover-desc">
-                                        <h2>Soleman</h2>
-                                        <h5>hotel staff</h5>
-                                        <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr.</p>
-                                        <div class="scoial_icons">
-                                            <a href="#"><i class="mdi mdi-facebook"></i></a>
-                                            <a href="#"><i class="mdi mdi-rss"></i></a>
-                                            <a href="#"><i class="mdi mdi-google-plus"></i></a>
-                                            <a href="#"><i class="mdi mdi-instagram"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="single-staff">
-                                <div class="sraff-inner">
-                                  @*  <img src="images/staff/staff2.jpg" alt="">*@
-                                    <div class="staff-title">
-                                        <span class="plus"></span>
-                                        <h2>Soleman</h2>
+                                        <h2>Frankie Varuaso</h2>
                                         <h5>Otel Müdürü</h5>
                                     </div>
                                     <div class="staff-hover-desc">
-                                        <h2>Soleman</h2>
-                                        <h5>Otel Görevlisi</h5>
-                                        <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr.</p>
+                                        <h2>Frankie Varuaso</h2>
+                                        <h5>Otel Müdürü</h5>
+                                        <p>Dünyanın sayılı otel müdürlerinden olan müdürümüz sizinle her daim ilgilenecektir !</p>
                                         <div class="scoial_icons">
                                             <a href="#"><i class="mdi mdi-facebook"></i></a>
                                             <a href="#"><i class="mdi mdi-rss"></i></a>
@@ -666,16 +439,16 @@
                         <div class="col-md-4">
                             <div class="single-staff">
                                 <div class="sraff-inner">
-                                    @*<img src="images/staff/staff3.jpg" alt="">*@
+                                    <img src="images/staff/staff3.jpg" alt="">
                                     <div class="staff-title">
                                         <span class="plus"></span>
-                                        <h2>Soleman</h2>
-                                        <h5>Otel GÖrevlisi</h5>
+                                        <h2>Joffie Thanks</h2>
+                                        <h5>İnsan Kaynakları Müdürü</h5>
                                     </div>
                                     <div class="staff-hover-desc">
-                                        <h2>Soleman</h2>
-                                        <h5>hotel staff</h5>
-                                        <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr.</p>
+                                        <h2>Joffie Thanks</h2>
+                                        <h5>İnsan Kaynakları Müdürü</h5>
+                                        <p>20 seneyi geçik süredir bizim ile çalışan ve güzel yüzlü hizmetini hiçbir zaman eksik etmeyen müdürümüz ile tanışın !</p>
                                         <div class="scoial_icons">
                                             <a href="#"><i class="mdi mdi-facebook"></i></a>
                                             <a href="#"><i class="mdi mdi-rss"></i></a>
@@ -691,109 +464,390 @@
             </div>
         </div>
     </div>
-    <!--Our staff end-->
-    <!--Testimonial end-->
-    <!--Our gallery start-->
-  -
-    <div class="hotel-cmmunities ptb-100 text-center">
-        <div class="community-bg-opacity"></div>
-        <div class="container">
-            <div class="row">
-                <div class="communities-list">
-                    <div class="single-commmunites">
-                        <h1 class="counter">500</h1>
-                        <h2>Müşteri</h2>
+</div>
+
+<div id="modalTekKisilik" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Tek Kişilik Oda</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-lg-6">
+
+                    <div class="b-date arrive mb-15">
+                        <input class="date-picker" type="text" id="girisTekli" placeholder="Giriş tarihi">
+                        <i class="mdi mdi-calendar-text"></i>
                     </div>
-                    <div class="single-commmunites">
-                        <h1 class="counter">200</h1>
-                        <h2>Ünlüler</h2>
-                    </div>
-                    <div class="single-commmunites">
-                        <h1 class="counter">850</h1>
-                        <h2>Dönüş</h2>
-                    </div>
-                    <div class="single-commmunites hidden-xs">
-                        <h1 class="counter">1250</h1>
-                        <h2>Mutlu İnsan</h2>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="b-date departure mb-15">
+                        <input class="date-picker" type="datetime" id="cikisTekli" placeholder="Ayrılış tarihi">
+                        <i class="mdi mdi-calendar-text"></i>
                     </div>
                 </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">İptal</button>
+                <button type="button" class="btn btn-default" id="tekliOdaRezervasyonOlustur">Kaydet</button>
             </div>
         </div>
+
     </div>
-    <!--Hotel communities end-->
-    <!--hotel team start-->
-    <div class="hotel-team pt-100 white_bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="team-brand pb-100">
-                        <div class="single-team">
-                            <a href="#">@*<img src="images/brand/b-1.jpg" alt="">*@</a>
-                        </div>
-                        <div class="single-team">
-                            <a href="#">@*<img src="images/brand/b-4.jpg" alt="">*@</a>
-                        </div>
-                        <div class="single-team">
-                            <a href="#">@*<img src="images/brand/b-3.jpg" alt="">*@</a>
-                        </div>
-                        <div class="single-team">
-                            <a href="#">@*<img src="images/brand/b-4.jpg" alt="">*@</a>
-                        </div>
-                        <div class="single-team">
-                            <a href="#">@*<img src="images/brand/b-5.jpg" alt="">*@</a>
-                        </div>
-                        <div class="single-team">
-                            <a href="#">@*<img src="images/brand/b-1.jpg" alt="">*@</a>
-                        </div>
-                        <div class="single-team">
-                            <a href="#">@*<img src="images/brand/b-4.jpg" alt="">*@</a>
-                        </div>
-                        <div class="single-team">
-                            <a href="#">@*<img src="images/brand/b-3.jpg" alt="">*@</a>
-                        </div>
-                        <div class="single-team">
-                            <a href="#">@*<img src="images/brand/b-4.jpg" alt="">*@</a>
-                        </div>
-                        <div class="single-team">
-                            <a href="#">@*<img src="images/brand/b-5.jpg" alt="">*@</a>
-                        </div>
+</div>
+
+<div id="modalCiftKisilik" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Çift Kişilik Oda</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-lg-6">
+
+                    <div class="b-date arrive mb-15">
+                        <input class="date-picker" type="text" id="girisCiftli" placeholder="Giriş tarihi">
+                        <i class="mdi mdi-calendar-text"></i>
+                    </div>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="b-date departure mb-15">
+                        <input class="date-picker" type="datetime" id="cikisCiftli" placeholder="Ayrılış tarihi">
+                        <i class="mdi mdi-calendar-text"></i>
                     </div>
                 </div>
+
+
             </div>
-         
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">İptal</button>
+                <button type="button" class="btn btn-default" id="CiftOdaRezervasyonOlustur">Kaydet</button>
+            </div>
         </div>
+
     </div>
-    <!--hotel team end-->
-    <!--Footer start -->
- 
-    <!-- Footer end -->
+</div>
+<div id="modalKralDairesi" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Çift Kişilik Oda</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-lg-6">
+
+                    <div class="b-date arrive mb-15">
+                        <input class="date-picker" type="text" id="girisKralDairesi" placeholder="Giriş tarihi">
+                        <i class="mdi mdi-calendar-text"></i>
+                    </div>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="b-date departure mb-15">
+                        <input class="date-picker" type="datetime" id="cikisKralDairesi" placeholder="Ayrılış tarihi">
+                        <i class="mdi mdi-calendar-text"></i>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">İptal</button>
+                <button type="button" class="btn btn-default" id="kralDairesiRezervasyonOlustur">Kaydet</button>
+            </div>
+        </div>
+
+    </div>
 </div>
 
 
+@section Scripts{
+
+    <script>
+        var formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'EUR',
+
+            // These options are needed to round to whole numbers if that's what you want.
+            //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+            //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+        });
+        var dates = {
+            convert: function (d) {
+                // Converts the date in d to a date-object. The input can be:
+                //   a date object: returned without modification
+                //  an array      : Interpreted as [year,month,day]. NOTE: month is 0-11.
+                //   a number     : Interpreted as number of milliseconds
+                //                  since 1 Jan 1970 (a timestamp)
+                //   a string     : Any format supported by the javascript engine, like
+                //                  "YYYY/MM/DD", "MM/DD/YYYY", "Jan 31 2009" etc.
+                //  an object     : Interpreted as an object with year, month and date
+                //                  attributes.  **NOTE** month is 0-11.
+                return (
+                    d.constructor === Date ? d :
+                        d.constructor === Array ? new Date(d[0], d[1], d[2]) :
+                            d.constructor === Number ? new Date(d) :
+                                d.constructor === String ? new Date(d) :
+                                    typeof d === "object" ? new Date(d.year, d.month, d.date) :
+                                        NaN
+                );
+            },
+            compare: function (a, b) {
+                // Compare two dates (could be of any type supported by the convert
+                // function above) and returns:
+                //  -1 : if a < b
+                //   0 : if a = b
+                //   1 : if a > b
+                // NaN : if a or b is an illegal date
+                // NOTE: The code inside isFinite does an assignment (=).
+                return (
+                    isFinite(a = this.convert(a).valueOf()) &&
+                        isFinite(b = this.convert(b).valueOf()) ?
+                        (a > b) - (a < b) :
+                        NaN
+                );
+            },
+            inRange: function (d, start, end) {
+                // Checks if date in d is between dates in start and end.
+                // Returns a boolean or NaN:
+                //    true  : if d is between start and end (inclusive)
+                //    false : if d is before start or after end
+                //    NaN   : if one or more of the dates is illegal.
+                // NOTE: The code inside isFinite does an assignment (=).
+                return (
+                    isFinite(d = this.convert(d).valueOf()) &&
+                        isFinite(start = this.convert(start).valueOf()) &&
+                        isFinite(end = this.convert(end).valueOf()) ?
+                        start <= d && d <= end :
+                        NaN
+                );
+            }
+        }
+        $(document).ready(function () {
+            var lst2 = $('#odalar');
+            var odaTuru = document.querySelector("#odatype");
+            var secim1 = document.querySelector("#odalar");
+            if ($('#odatype').val() == 'default') {
+                lst2.empty();
+                lst2.append($("<option></option>").val(99).html("Önce Oda Türünü Seçin"));
+                //secim1.disabled = true;
+            }
+            $('#odatype').change(function () {
+                var _odaIdsi = $('#odatype').val();
+                console.log("değiştim idsi :" + _odaIdsi);
+                lst2.empty();
+                //lst2.append($("<option></option>").val(99).html("brr skrt"));
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/OdalariListele",
+                    data: {
+                        odaIdsi: _odaIdsi
+                    },
+                    dataType: 'json',
+                    processData: true,
+                    success: function (result) {
+                        var liste = $('#odalar');
+                        console.log(result)
+                        $.each(result.rooms, function (i, value) {
+                            id = value.RoomId;
+                            odaTurAdi = value.roomNumber;
+                            liste.append($("<option></option>").val(id).html(odaTurAdi));
+                        })
+                    }
+                });
+            })
+        });
+        $.ajax({
+            type: "GET",
+            url: "/Home/ComboBoxaListele",
+            dataType: 'json',
+            processData: true,
+            success: function (result) {
+                var lst1 = $('#odatype');
+                console.log(result)
+                $.each(result.roomTypes, function (i, value) {
+                    id = value.id;
+                    odaTurAdi = value.odaTurAdi;
+                    lst1.append($("<option></option>").val(id).html(odaTurAdi));
+                })
+            }
+        });
+
+        function yolla(odaSecim, kacGun) {
+            window.location = 'Home/paymentstart?&odaType=' + odaSecim+'&gxL='+kacGun;
+        }
+        $('#tekliOdaRezervasyonOlustur').on('click', function () {
+            let a = $('#girisTekli').val();
+            let b = $('#cikisTekli').val();
+            var date1 = new Date(a);
+            var date2 = new Date(b);
+            var compareResult = dates.compare(date1, date2);
+            var zaman_Farki = date2.getTime() - date1.getTime();
+            var gun_Farki = zaman_Farki / (1000 * 3600 * 24);
+            let gunlukOtelParasi = 124.99;
+            var calculate_totalmoney = gunlukOtelParasi * gun_Farki;
+            let moneyTotal = formatter.format(calculate_totalmoney);
+            if (a == '' || b == '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata',
+                    text: 'Gün Seçmediniz!',
+                })
+            } else if (a == '' || b == '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata',
+                    text: 'Gün Seçmediniz!',
+                })
+            } else if (compareResult == 1) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata',
+                    text: 'Giriş Günü Çıkış Gününden Büyük Olamaz!',
+                })
+            } else {
+                Swal.fire({
+                    title: 'Ödeme Sayfasına Geçmek istiyor musunuz ?',
+                    text: "Toplam Ödeme Tutarınız " + "'" + moneyTotal + "'" + " Tutuyor Onaylıyor Musunuz",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Kabul Ediyorum!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            'Ödeme Sayfasına Yönlendiriliyorsunuz!',
+                            '',
+                            'success',
+
+                        ),
+                            window.setTimeout(yolla(1,gun_Farki),303300);
+                    }
+                })
+            }
+        });
+
+        $('#CiftOdaRezervasyonOlustur').on('click', function () {
+            let a = $('#girisCiftli').val();
+            let b = $('#cikisCiftli').val();
+            var date1 = new Date(a);
+            var date2 = new Date(b);
+            var compareResult = dates.compare(date1, date2);
+            var zaman_Farki = date2.getTime() - date1.getTime();
+            var gun_Farki = zaman_Farki / (1000 * 3600 * 24);
+            let gunlukOtelParasi = 190.99;
+            var calculate_totalmoney = gunlukOtelParasi * gun_Farki;
+            let moneyTotal = formatter.format(calculate_totalmoney);
+            if (a == '' || b == '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata',
+                    text: 'Gün Seçmediniz!',
+                })
+            } else if (a == '' || b == '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata',
+                    text: 'Gün Seçmediniz!',
+                })
+            } else if (compareResult == 1) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata',
+                    text: 'Giriş Günü Çıkış Gününden Büyük Olamaz!',
+                })
+            } else {
+                Swal.fire({
+                    title: 'Ödeme Sayfasına Geçmek istiyor musunuz ?',
+                    text: "Toplam Ödeme Tutarınız " + "'" + moneyTotal + "'" + " Tutuyor Onaylıyor Musunuz",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Kabul Ediyorum!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            'Ödeme Sayfasına Yönlendiriliyorsunuz!',
+                            '',
+                            'success',
+
+                        ),
+                            window.setTimeout(yolla(2, gun_Farki),3000)
 
 
-@section Scripts{ 
+                    }
+                })
+            }
+        });
 
-<script>
-        //var odaTuru = document.querySelector("#durum333");
-        //var secim1 = document.querySelector("#yetiskinval");
-        //var secim2 = document.querySelector("#cocukval");
-        //var odalist = document.querySelector("#odasecimi");
-        //odalist.addEventListener('change', analyseUserSelection);
-        //function analyseUserSelection(e) {
-        //    if (odaTuru.selected) {
-        //        secim1.disabled = true;
-        //        secim2.disabled = true;
-        //        $(secim1).val('suiticin');
-        //        $(secim2).val('cocuksuit');
+        $('#kralDairesiRezervasyonOlustur').on('click', function () {
+            let a = $('#girisKralDairesi').val();
+            let b = $('#cikisKralDairesi').val();
+            var date1 = new Date(a);
+            var date2 = new Date(b);
+            var compareResult = dates.compare(date1, date2);
+            var zaman_Farki = date2.getTime() - date1.getTime();
+            var gun_Farki = zaman_Farki / (1000 * 3600 * 24);
+            let gunlukOtelParasi = 250.99;
+            var calculate_totalmoney = gunlukOtelParasi * gun_Farki;
+            let moneyTotal = formatter.format(calculate_totalmoney);
+            if (a == '' || b == '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata',
+                    text: 'Gün Seçmediniz!',
+                })
+            } else if (a == '' || b == '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata',
+                    text: 'Gün Seçmediniz!',
+                })
+            } else if (compareResult == 1) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata',
+                    text: 'Giriş Günü Çıkış Gününden Büyük Olamaz!',
+                })
+            } else {
+                Swal.fire({
+                    title: 'Ödeme Sayfasına Geçmek istiyor musunuz ?',
+                    text: "Toplam Ödeme Tutarınız " + "'" + moneyTotal + "'" + " Tutuyor Onaylıyor Musunuz",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Kabul Ediyorum!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            'Ödeme Sayfasına Yönlendiriliyorsunuz!',
+                            '',
+                            'success',
 
-        //    } else if (!odaTuru.selected) {
-        //        secim1.removeAttribute('disabled');
-        //        secim2.removeAttribute('disabled');
-        //    }
-        //}
+                        ),
+                            window.setTimeout(yolla(3, gun_Farki),3500)
 
 
-</script>
-}   
+                    }
+                })
+            }
+        });
+    </script>
+}
 

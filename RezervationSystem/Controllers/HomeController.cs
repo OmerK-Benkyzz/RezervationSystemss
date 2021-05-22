@@ -19,17 +19,20 @@ namespace RezervationSystem.Controllers
 
         public HomeController()
         {
-            postgreServices = new PostgreServices(); 
+            postgreServices = new PostgreServices();
 
 
         }
         public IActionResult Index()
         {
-          var gelen= OdalariDoldur();
+            var gelen = OdalariDoldur();
             return View();
         }
 
-
+        public IActionResult PaymentStart()
+        {
+            return View();
+        }
 
         public JsonResult OdalariDoldur()
         {
@@ -43,16 +46,49 @@ namespace RezervationSystem.Controllers
                 _roomViewModels.roomNumber = item.roomNumber;
                 _roomViewModels.kat = item.kat;
                 roomViews.Add(_roomViewModels);
-
             }
-
-
             return Json(new
             {
                 roomViews
             });
         }
-    
+
+        public JsonResult ComboBoxaListele()
+        {
+            List<RoomTypeViewModel> roomTypes = new List<RoomTypeViewModel>();
+            var odaTurleriListele = postgreServices.OdaTurlerComboBoxDoldur();
+            foreach (var item in odaTurleriListele)
+            {
+                RoomTypeViewModel odaTurler = new RoomTypeViewModel();
+                odaTurler.odaTurAdi = item.odaTurAdi;
+                odaTurler.id = item.id;
+                roomTypes.Add(odaTurler);
+            }
+            return Json(new
+            {
+                roomTypes
+            });
+        }
+
+
+
+        public JsonResult OdalariListele(int odaIdsi)
+        {
+            List<RoomViewModel> rooms = new List<RoomViewModel>();
+            var odaTurleriListele = postgreServices.odalarDonmeId(odaIdsi);
+            foreach (var item in odaTurleriListele)
+            {
+                RoomViewModel odalar = new RoomViewModel();
+                odalar.roomNumber = item.roomNumber;
+                odalar.RoomId = item.RoomId;
+                rooms.Add(odalar);
+            }
+            return Json(new
+            {
+                rooms
+            });
+        }
+
 
 
         public IActionResult About()
@@ -72,7 +108,7 @@ namespace RezervationSystem.Controllers
         public IActionResult Privacy()
         {
             return View();
-        }
+        }   
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
