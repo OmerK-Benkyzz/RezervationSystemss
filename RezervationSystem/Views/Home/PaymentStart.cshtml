@@ -4,26 +4,232 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="preloader">
-    <div class="loading-center">
-        <div class="loading-center-absolute">
-            <div class="object object_one"></div>
-            <div class="object object_two"></div>
-            <div class="object object_three"></div>
-        </div>
-    </div>
-</div>
+
+<style>
+
+        /*
+    =====
+    CORE STYLES
+    =====
+    */
+
+        .toggle {
+            --uiToggleSize: var(--toggleSize, 1.25rem);
+            --uiToggleBorderWidth: var(--toggleBorderWidth, 2px);
+            --uiToggleColor: var(--toggleColor, #222);
+            display: var(--toggleDisplay, inline-flex);
+            position: relative;
+        }
+
+        .toggle__input {
+            /*
+      The pattern by Sara Soueidan https://www.sarasoueidan.com/blog/inclusively-hiding-and-styling-checkboxes-and-radio-buttons/
+      */
+            width: var(--uiToggleSize);
+            height: var(--uiToggleSize);
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 0;
+        }
+
+        /*
+    1. Calculation of the gap for the custom checkbox
+    */
+
+        .toggle__label {
+            display: inline-flex;
+            min-height: var(--uiToggleSize);
+            padding-left: calc(var(--uiToggleSize) + var(--toggleIndent, .4em));
+        }
+
+        .toggle__input:not(:disabled) ~ .toggle__label {
+            cursor: pointer;
+        }
+
+        /*
+    1. Ems helps to calculate size of the checkbox
+    */
+
+        .toggle__label::after {
+            content: "";
+            box-sizing: border-box;
+            width: 1em;
+            height: 1em;
+            font-size: var(--uiToggleSize); /* 1 */
+            background-color: transparent;
+            border: var(--uiToggleBorderWidth) solid var(--uiToggleColor);
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 2;
+        }
+
+        .toggle__input:checked ~ .toggle__label::after {
+            background-color: var(--uiToggleColor);
+        }
+
+        .toggle__text {
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        /*
+    The arrow size and position depends from sizes of square because I needed an arrow correct positioning from the top left corner of the element toggle
+
+    1. Ems helps to calculate size and position of the arrow
+    */
+
+        .toggle__label::before {
+            content: "";
+            width: 0;
+            height: 0;
+            font-size: var(--uiToggleSize); /* 1 */
+            border-left-width: 0;
+            border-bottom-width: 0;
+            border-left-style: solid;
+            border-bottom-style: solid;
+            border-color: var(--toggleArrowColor, #fff);
+            position: absolute;
+            top: .5428em;
+            left: .25em;
+            z-index: 3;
+            transform-origin: left top;
+            transform: rotate(-40deg) skew(10deg);
+        }
+
+        .toggle__input:checked ~ .toggle__label::before {
+            --uiToggleArrowWidth: var(--toggleArrowWidth, 2px);
+            width: .4em;
+            height: .2em;
+            border-left-width: var(--uiToggleArrowWidth);
+            border-bottom-width: var(--uiToggleArrowWidth);
+        }
+
+        /*
+    States
+    */
+
+        /* focus state */
+
+        .toggle:focus-within {
+            outline: var(--toggleOutlineWidthFocus, 3px) solid var(--toggleOutlineColorFocus, currentColor);
+            outline-offset: var(--toggleOutlineOffsetFocus, 5px);
+        }
+
+        /* disabled state */
+
+        .toggle__input:disabled ~ .toggle__label {
+            opacity: var(--toggleOpacityDisabled, .24);
+            cursor: var(--toggleCursorDisabled, not-allowed);
+            user-select: none;
+        }
+
+        /*
+    =====
+    PRESENTATION STYLES
+    =====
+    */
+
+        /*
+    The demo skin
+    */
+
+        .toggle__label::after {
+            border-radius: var(--toggleBorderRadius, 2px);
+        }
+
+        /*
+    The animation of switching states
+    */
+
+        .toggle__input:not(:disabled) ~ .toggle__label::before {
+            will-change: width, height;
+            opacity: 0;
+        }
+
+        .toggle__input:not(:disabled):checked ~ .toggle__label::before {
+            opacity: 1;
+            transition: opacity .1s ease-out .25s, width .1s ease-out .5s, height .2s ease-out .3s;
+        }
+
+        .toggle__input:not(:disabled) ~ .toggle__label::after {
+            will-change: background-color;
+            transition: background-color .2s ease-out;
+        }
+
+        /*
+    =====
+    SETTINGS
+    =====
+    */
+
+        .page__custom-settings {
+            --toggleColor: #ffff;
+            --toggleOutlineColorFocus: #000000;
+            --toggleSize: 2rem;
+        }
+
+
+        /*
+    =====
+    DEMO
+    =====
+    */
+
+
+        .page {
+            box-sizing: border-box;
+            max-width: 45rem;
+            padding: 2.75rem 2rem 2.5rem;
+            margin: auto;
+            background-color: #fff;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .12), 0 1px 5px 0 rgba(0, 0, 0, .2);
+            border-radius: 2px;
+        }
+
+        .page__section {
+            display: flex;
+            flex-wrap: wrap;
+            font-weight: 700;
+        }
+
+            .page__section:nth-child(n+2) {
+                margin-top: 3rem;
+            }
+
+        .page__custom-settings {
+            --pageToggleTextFontSize: 1.25rem;
+        }
+
+        .page__name {
+            width: 100%;
+        }
+
+            .page__name::first-letter {
+                text-transform: uppercase;
+            }
+
+        .page__toggle {
+            margin-top: 1.25rem;
+            margin-right: 1.5rem;
+            font-size: var(--pageToggleTextFontSize);
+        }
+        }
+</style>
+
 
 <div class="wrapper">
-
+    <!--Header section start-->
     <!--Room booking start-->
     <div class="room-booking ptb-80 white_bg">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-title mb-80 text-center">
-                        <h2>Booking <span>rooms</span></h2>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered by injected humour.</p>
+                        <h2>Oda<span>Rezervasyonu</span></h2>
+                        <p>Sizin İçin En İyisi Burada.</p>
                     </div>
                 </div>
             </div>
@@ -31,69 +237,69 @@
                 <div class="col-md-12">
                     <div class="booking-rooms-tab">
                         <ul class="nav" role="tablist">
-                            <li class="active"><a href="#booking" data-toggle="tab"><span class="tab-border">1</span><span>Rezervasyon Bilgileri</span></a></li>
-                            <li><a href="#personal" data-toggle="tab"><span class="tab-border">2</span><span>Kişisel Bilgiler</span></a></li>
-                            <li><a href="#payment" data-toggle="tab"><span class="tab-border">3</span><span>Ödeme Bilgileri</span></a></li>
-                            <li><a href="#done" data-toggle="tab"><span class="tab-border">4</span><span>Booking Done</span></a></li>
+                            <li><a href="#booking" id="kisiselBilgiPage" class="active" data-toggle="tab"><span class="tab-border">1</span><span>Rezervasyon Bilgileri</span></a></li>
+                            <li><a href="#personal" id="personalBilgiPage" data-toggle="tab"><span class="tab-border">2</span><span>Kişisel Bilgiler</span></a></li>
+                            <li><a href="#payment" id="paymentBilgiPage" data-toggle="tab"><span class="tab-border">3</span><span>Ödeme Bilgileri</span></a></li>
+                            <li><a href="#done" data-toggle="tab"><span class="tab-border">4</span><span>Hazırsınız</span></a></li>
                         </ul>
                     </div>
                     <div class="service-tab-desc text-left mt-60">
-                        <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane" id="booking">
+                        <div class="tab-content" id="booklaba">
+                            <div role="tabpanel" class="tab-pane active" id="booking">
                                 <div class="booking-info-deatils">
                                     <div class="single-room-details fix">
                                         <div class="room-img">
-                                            <img src="images/room/roob-tab.jpg" alt="">
+                                            <img src="images/room/roob-tab.jpg" id="myImageID" alt="">
                                         </div>
                                         <div class="single-room-details pl-50">
-                                            <h3 class="s_room_title" id="odaturuAdi"> </h3>
+                                            <h3 class="s_room_title" id="odaturuAdi"></h3>
                                             <div class="room_price">
                                                 <h4 id="toplamOdenecekTutar">Toplam Ücret: </h4>
                                                 <h4 id="kalinacakGun">Kalınacak Gün Sayısı: </h4>
                                                 <h5 id="gunlukUcret"><span>/Gecelik</span></h5>
-                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable</p>
+                                                @*<h5 id="girisGun"><span>/Gecelik</span></h5>
+                                                    <h5 id="cikisGun"><span>/Gecelik</span></h5>*@
+                                                @*<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable</p>*@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="single-room-booking-form mt-60">
+
+                                    <div class="single-room-booking-form mt-60" style="background-color:darkslategrey">
                                         <div class="booking_form_inner">
                                             <form action="#">
                                                 <div class="single-form-part">
                                                     <div class="date-to mb-20">
-                                                        <input class="date-picker" type="text" placeholder="arrive date" value="arrive date">
+                                                        <input id="girisGun" type="text">
                                                         <i class="mdi mdi-calendar-text"></i>
                                                     </div>
-                                                    <div class="select-option">
-                                                        <select>
-                                                            <option value="1" selected>Room</option>
-                                                            <option value="2">Room 2</option>
-                                                            <option value="3">Room 3</option>
-                                                        </select>
+                                                    <div class="date-to mb-20">
+                                                        <input id="cikisGun" type="text">
+                                                        <i class="mdi mdi-calendar-text"></i>
                                                     </div>
                                                 </div>
                                                 <div class="single-form-part">
                                                     <div class="date-to mb-20">
-                                                        <input class="date-picker" type="text" placeholder="Departure Date" value="Departure Date">
-                                                        <i class="mdi mdi-calendar-text"></i>
+                                                        <input type="number" id="cocukSayisi" placeholder="Kaç Çocuğunuz Var" disabled>
                                                     </div>
-                                                    <div class="select-option">
-                                                        <select>
-                                                            <option value="1" selected>Children</option>
-                                                            <option value="2">Mael</option>
-                                                            <option value="3">lady</option>
+                                                    <div class="select-option mb-20">
+                                                        <select name="book" id="odalar" @*class="select-booking" *@>
+                                                            <option value="" selected>Lütfen Odanızı Seçiniz</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="single-form-part">
-                                                    <div class="select-option mb-20">
-                                                        <select>
-                                                            <option value="1" selected>Adult</option>
-                                                            <option value="2">Teen</option>
-                                                            <option value="3">Children</option>
-                                                        </select>
+                                                    <div class="page__toggle">
+                                                        <label class="toggle">
+                                                            <input class="toggle__input" type="checkbox" id="chckBxCocuk">
+                                                            <span class="toggle__label">
+                                                                <span class="toggle__text" style="color:white">Çocuk Sahibiyim</span>
+                                                            </span>
+                                                        </label>
                                                     </div>
+                                                    <br />
+                                                    <br />
                                                     <div class="submit-form">
-                                                        <button type="submit">Check Availability</button>
+                                                        <button id="ileriKisisellere" type="button">İleri</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -108,65 +314,47 @@
                                             <div class="booking-form-list">
                                                 <div class="single-form-part">
                                                     <div class="name mb-15">
-                                                        <input type="text" placeholder="First Name">
+                                                        <input type="text" id="musteriAd" placeholder="Adınız">
                                                     </div>
-                                                    <div class="select-option">
-                                                        <select>
-                                                            <option value="1" selected>Smoking room</option>
-                                                            <option value="2">Kitchen</option>
-                                                            <option value="3">Bathroom</option>
-                                                        </select>
-                                                    </div>
+
                                                 </div>
                                                 <div class="single-form-part">
                                                     <div class="name mb-15">
-                                                        <input type="text" placeholder="Last Name">
+                                                        <input type="text" id="musteriSoyad" placeholder="Soyadınız">
                                                     </div>
-                                                    <div class="select-option">
-                                                        <select>
-                                                            <option value="1" selected>parking</option>
-                                                            <option value="2">Rest house</option>
-                                                            <option value="3">Gym room</option>
-                                                        </select>
-                                                    </div>
+
                                                 </div>
                                                 <div class="single-form-part">
                                                     <div class="mail mb-15">
-                                                        <input type="text" placeholder="Your Email" value="Your Email">
-                                                        <i class="mdi mdi-calendar-text"></i>
+                                                        <input type="text" id="email" placeholder="E-Mail">
+                                                        <i class="fa fa-envelope"></i>
                                                     </div>
-                                                    <div class="select-option">
-                                                        <select>
-                                                            <option value="1" selected>With pet</option>
-                                                            <option value="2">with favourit</option>
-                                                            <option value="3">pet</option>
-                                                        </select>
-                                                    </div>
+
                                                 </div>
                                             </div>
                                             <div class="request-box mt-15">
-                                                <textarea placeholder="Any Specific Request"></textarea>
+                                                <textarea  id="notices" placeholder="İletmek istediğiniz notunuzu yazın.Sizi önemsiyoruz !"></textarea>
                                             </div>
                                             <div class="prve-next-box mt-20">
                                                 <div class="back-link">
-                                                    <a href="booking">Geri</a>
+                                                    <button type="button" id="geriKisiselBilgiler">Geri</button>
                                                 </div>
-                                                <button type="button">İleri</button>
+                                                <button id="ileriPayment1" type="button">İleri</button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane active" id="payment">
+                            <div role="tabpanel" class="tab-pane" id="payment">
                                 <div class="payment-info">
                                     <form action="#">
                                         <div class="payment-form">
                                             <div class="payment-form-list">
                                                 <div class="single_form">
-                                                    <input type="text" placeholder="Kart Sahibinin Adı">
+                                                    <input type="text" placeholder="Kart Sahibinin İsmi">
                                                 </div>
                                                 <div class="single_form">
-                                                    <input type="text" placeholder="Kredi Kartı Numaranız">
+                                                    <input type="text" placeholder="Kart Numarası">
                                                 </div>
                                                 <div class="single_form">
                                                     <div class="select-date">
@@ -210,10 +398,11 @@
                                             </div>
                                             <div class="pay-money-form mt-40">
                                                 <div class="payment-card">
-                                                    <img src="~/images/pay-card.png" />
+
+                                                    <a>   <img src="~/images/pay-card.png" /></a>
                                                 </div>
                                                 <div class="pay-order">
-                                                    <button type="button">Ödemeyi Tamamla</button>
+                                                    <button id="paymentDone" type="button">Ödemeyi Tamamla</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -258,10 +447,10 @@
             </div>
         </div>
     </div>
-    <!--Room booking end-->
-    <!--hotel team start-->
 
 </div>
+<input type="text" hidden id="hiddenUcret"/>
+<input type="text" hidden id="hiddenGun"/>
 @section scripts{
 
 
@@ -271,43 +460,144 @@
         var url = new URL(url_string);
         var type = url.searchParams.get("odaType");
         var day_Room = url.searchParams.get("gxL");
-        alert(type + "-tür : " + day_Room);
-        console.log(type + "-tür : " + day_Room);
-        odaTurunuVeParasiniYaz(day_Room, 3);
-        function odaTurunuVeParasiniYaz(gun, type) {
+        var girisGun = url.searchParams.get("arriveDt");
+        var cikisGun = url.searchParams.get("leaveDt");
+
+        odaTurunuVeParasiniYaz(day_Room, type, girisGun, cikisGun);
+        function odaTurunuVeParasiniYaz(gun, type, girisGun, cikisGun) {
             let kralDairesiUcret = 250;
             let tekOdaUcret = 125;
             let ciftOdaUcret = 190;
-
             if (type == 1) {
                 let toplam_tutar = tekOdaUcret * day_Room;
                 $('#odaturuAdi').html('Tek Kişilik Oda');
-                $('#toplamOdenecekTutar').html('Toplam Tutar : ' +toplam_tutar);
-                $('#kalinacakGun').html('Kalınacak Gün : ' +day_Room);
-                $('#gunlukUcret').html('Günlük Oda Ücreti : ' +tekOdaUcret);
-        
-
-            } else if (type == 2) {
-                let toplam_tutar = ciftOdaUcret * day_Room;
-                $('#odaturuAdi').html('Çift Kişilik Oda');
-                $('#toplamOdenecekTutar').html('Toplam Tutar : ' +toplam_tutar);
-                $('#kalinacakGun').html('Kalınacak Gün : ' +day_Room);
-                $('#gunlukUcret').html('Günlük Oda Ücreti : ' +ciftOdaUcret);
-
-
-            } else if (type == 3) {
-                let toplam_tutar = kralDairesiUcret * day_Room;
-                $('#odaturuAdi').text('Kral Odası');
-                $('#toplamOdenecekTutar').text('Toplam Tutar : ' +toplam_tutar);
-                $('#kalinacakGun').text('Kalınacak Gün : ' +day_Room);
-                $('#gunlukUcret').text('Günlük Oda Ücreti : ' +kralDairesiUcret);
+                $('#toplamOdenecekTutar').html('Toplam Tutar : ' + toplam_tutar);
+                $('#kalinacakGun').html('Kalınacak Gün : ' + day_Room);
+                $('#gunlukUcret').html('Günlük Oda Ücreti : ' + tekOdaUcret);
+                $('#hiddenUcret').val(toplam_tutar);
+                $('#hiddenGun').val(day_Room);
+                $('#girisGun').val(girisGun);
+                $('#cikisGun').val(cikisGun);
+                document.getElementById('myImageID').src = "/images/room/rm2.jpg";
 
             }
-
-
-
+            else if (type == 2) {
+                let toplam_tutar = kralDairesiUcret * day_Room;
+                $('#odaturuAdi').html('Kral Dairesi');
+                $('#gunlukUcret').html('Günlük Oda Ücreti : ' + kralDairesiUcret);
+                $('#toplamOdenecekTutar').html('Toplam Tutar : ' + toplam_tutar);
+                $('#kalinacakGun').html('Kalınacak Gün : ' + day_Room);
+                $('#girisGun').val(girisGun);
+                $('#hiddenUcret').val(toplam_tutar);
+                $('#hiddenGun').val(day_Room);
+                $('#cikisGun').val(cikisGun);
+                document.getElementById('myImageID').src = "/images/room/rm1.jpg";
+            }
+            else if (type == 3) {
+                let toplam_tutar = ciftOdaUcret * day_Room;
+                $('#odaturuAdi').text('Çift Kişilik Oda');
+                $('#toplamOdenecekTutar').text('Toplam Tutar : ' + toplam_tutar);
+                $('#kalinacakGun').text('Kalınacak Gün : ' + day_Room);
+                $('#gunlukUcret').text('Günlük Oda Ücreti : ' + ciftOdaUcret);
+                $('#girisGun').val(girisGun);
+                $('#cikisGun').val(cikisGun);
+                $('#hiddenUcret').val(toplam_tutar);
+                $('#hiddenGun').val(day_Room);
+                document.getElementById('myImageID').src = "/images/room/rm3.jpg";
+            }
         }
+        document.getElementById('chckBxCocuk').onchange = function () {
+            document.getElementById('cocukSayisi').disabled = !this.checked;
+            if (!this.checked) {
+                $('#cocukSayisi').val('Kaç Çocuğunuz Var');
+            }
+        };
 
+        $("#geriKisiselBilgiler").on("click", function () {
+          
+            $("#kisiselBilgiPage").trigger("click");
+        });
+        $("#ileriPayment1").on("click", function () {
+            $("#paymentBilgiPage").trigger("click");
+        });
+        $("#ileriKisisellere").on("click", function () {
+            var odaNumber = $('#odalar').val();
+            if (odaNumber == "") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata',
+                    text: 'Lütfen Oda Numarası Seçiniz !!',
+                })
+            } else {
+            $("#personalBilgiPage").trigger("click");
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/Home/OdalariListele",
+            data: {
+                odaIdsi: type
+            },
+            dataType: 'json',
+            processData: true,
+            success: function (result) {
+                var liste = $('#odalar');
+                console.log(result)
+                $.each(result.rooms, function (i, value) {
+                    id = value.RoomId;
+                    odaTurAdi = value.roomNumber;
+                    liste.append($("<option></option>").val(id).html(odaTurAdi));
+                })
+            }
+        });
+        function MusteriKaydet() {
+            var chckMi;
+            var musteriAd = $('#musteriAd').val();
+            var musteriSoyad = $('#musteriSoyad').val();
+            var cocukSayisi = $('#cocukSayisi').val();
+            var email = $('#email').val();
+            var ucretToplam = $('#hiddenUcret').val();
+            var gunToplam = $('#hiddenGun').val();
+            var odaNumber = $('#odalar').val();
+            var not = $('#notices').val();
+            var checkBox = document.getElementById("chckBxCocuk");
+            var _girisGun = girisGun.split("/").reverse().join("-");
+            var _cikisGun = cikisGun.split("/").reverse().join("-");
+            if (checkBox.checked == true) {
+                chckMi = true;
+            } else {
+                chckMi = false;
+            }
+        
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/MusteriKaydet",
+                    data: {
+                        girisGun: _girisGun,
+                        cikisGun: _cikisGun,
+                        musteriAd: musteriAd,
+                        musteriSoyad: musteriSoyad,
+                        ucretToplam: ucretToplam,
+                        gunToplam: gunToplam,
+                        odaNumber: odaNumber,
+                        email: email,
+                        cocukSayisi: cocukSayisi,
+                        not: not,
+                        chckMi: chckMi
+                    },
+                    dataType: 'json',
+                    processData: true,
+                    success: function (result) {
+
+                    }
+                });
+            
+           
+        }
+        $('#paymentDone').on('click', function () {
+            MusteriKaydet();
+        })
     </script>
 
 }

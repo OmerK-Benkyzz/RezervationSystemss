@@ -9,6 +9,7 @@ using RezervationSystem.Business;
 using RezervationSystem.Business.Postgre;
 using RezervationSystem.UI.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Globalization;
 
 namespace RezervationSystem.Controllers
 {
@@ -71,6 +72,24 @@ namespace RezervationSystem.Controllers
         }
 
 
+        public JsonResult MusteriKaydet(string girisGun, string cikisGun, string musteriAd, string musteriSoyad,string ucretToplam,string gunToplam,string odaNumber,string email,string cocukSayisi,string not,bool chckMi)
+        {
+
+            //string parseGunGiris = girisGun.Replace('/', '-');  
+            //string parseGunCikis = cikisGun.Replace('/', '-');
+            //DateTime _girisGun = Convert.ToDateTime(girisGun);
+            //DateTime _cikisGun = Convert.ToDateTime(cikisGun);
+            string parseGunGiris = DateTime.ParseExact(girisGun, "yyyy-d-M", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd");
+            string parseGunCikis = DateTime.ParseExact(cikisGun, "yyyy-d-M", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd");
+            string _parseGunGiris = parseGunGiris.Replace('.', '-');
+            string _parseGunCikis = parseGunCikis.Replace('.', '-');
+            //DateTime parseGunCikis = DateTime.ParseExact(cikisGun, "dd/MM/yyyy", null);
+            postgreServices.MusteriKaydet(_parseGunGiris, _parseGunCikis,  musteriAd,  musteriSoyad,  ucretToplam,  gunToplam,  odaNumber,  email,  cocukSayisi,  not, chckMi);
+            return Json(true);
+
+        }
+
+        
 
         public JsonResult OdalariListele(int odaIdsi)
         {
@@ -108,7 +127,7 @@ namespace RezervationSystem.Controllers
         public IActionResult Privacy()
         {
             return View();
-        }   
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

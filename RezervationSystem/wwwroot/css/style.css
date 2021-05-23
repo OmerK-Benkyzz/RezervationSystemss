@@ -349,7 +349,7 @@
   width: 100%;
 }
 .submit-form button:hover {
-    background: #3ac4fa none repeat scroll 0 0;
+    background: #4c4c4c none repeat scroll 0 0;
 }
 .welcome-desc {
   margin-bottom: 32px;
@@ -478,7 +478,7 @@ p.welcome-desc {
     padding: 15px 15px;
 }
 .menu nav ul li ul.dropdown_menu li {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #3ac4fa;
     display: block;
     margin: 0;
     padding: 0;
@@ -591,7 +591,7 @@ p.welcome-desc {
   border-bottom: 1px solid #4a4a4a;
 }
 .section-title > h2 span,.video-tour .section_title > h2 span,.discount_offer_title h2 span{
-    color: #3ac4fa;
+    color: #be4141;
 }
 .section-title > h2::after {
   background: rgba(0, 0, 0, 0) url("images/icons/title.jpg") no-repeat scroll 0 0;
@@ -709,7 +709,7 @@ p.welcome-desc {
     width: 26px;
 }
 .carousel-list.owl-theme .owl-controls .owl-page.active span,.our-room-list.owl-theme .owl-controls .owl-page.active span,.our-news-list.owl-theme .owl-controls .owl-page.active span,.team_brand.style2.owl-theme .owl-controls .owl-page.active span {
-    background: #3ac4fa none repeat scroll 0 0;
+    background: #cc3030 none repeat scroll 0 0;
     width: 40px;
 }
 .our-room .our-room-list.owl-theme .owl-controls,.our-room .our-news-list.owl-theme .owl-controls,.team_brand.style2.owl-theme .owl-controls {
@@ -883,7 +883,7 @@ p.welcome-desc {
 .staff-hover-desc .scoial_icons > a:hover {
     background: #fff none repeat scroll 0 0;
     border-color: #fff;
-    color: #3ac4fa;
+    color: #cca875;
 }
 .staff-hover-desc::before {
   border-bottom: 80px solid rgba(58, 196, 250, 0.9);
@@ -2117,9 +2117,10 @@ h3.news-title {
   margin-left: 24px;
   position: relative;
 }
-.booking-rooms-tab ul li.active a,.booking-rooms-tab ul li a:hover {
-  background: #3ac4fa none repeat scroll 0 0;
-}
+
+    .booking-rooms-tab ul li.active a, .booking-rooms-tab ul li a:hover {
+        background: darkslategrey none repeat scroll 0 0;
+    }
 .booking-rooms-tab ul li.active a,.booking-rooms-tab ul li a:hover {
   color: #fff
 }
@@ -2128,16 +2129,16 @@ h3.news-title {
   display: inline-block;
   padding-bottom: 15px;
 }
-.booking-rooms-tab ul li.active::before {
-    background: #3ac4fa none repeat scroll 0 0;
-    bottom: -23px;
-    content: "";
-    height: 8px;
-    left: 0;
-    position: absolute;
-    width: 100%;
-    z-index: 1;
-}
+    .booking-rooms-tab ul li.active::before {
+        background: darkslategrey none repeat scroll 0 0;
+        bottom: -23px;
+        content: "";
+        height: 8px;
+        left: 0;
+        position: absolute;
+        width: 100%;
+        z-index: 1;
+    }
 .booking-rooms-tab ul li:first-child{margin-left: 0}
 .booking-rooms-tab ul li a {
   background: #f1f1f1 none repeat scroll 0 0;
@@ -2269,9 +2270,9 @@ h3.news-title {
 .prve-next-box button:hover,.pay-order > button:hover {
     background: #4a4a4a none repeat scroll 0 0;
 }
-.prve-next-box .back-link a:hover{background: #3ac4fa }
+.prve-next-box .back-link a:hover{background: #4a4a4a }
 .prve-next-box button,.pay-order > button {
-  background: #3ac4fa none repeat scroll 0 0;
+  background: #898989 none repeat scroll 0 0;
   border: medium none;
   display: inline-block;
   margin-left: 25px;
@@ -2507,7 +2508,7 @@ h3.news-title {
   padding: 10px !important;
 }
 .mean-container .mean-nav ul li a:hover {
-  color: #3ac4fa;
+  color: #e1c22f;
 }
 .mean-container .mean-bar::after {
   display: none;
@@ -2624,9 +2625,9 @@ h3.news-title {
     right: 30px;
 }
 .slider-list.owl-carousel .owl-buttons > div:hover {
-    background: #3ac4fa none repeat scroll 0 0;
+    background: #890808 none repeat scroll 0 0;
     color: #ffffff;
 }
 .slider-list.owl-theme .owl-controls {
-  margin-top: 0;
+  margin-top: 0;    
 }

@@ -116,5 +116,18 @@ namespace RezervationSystem.DataAccess.PostgreSQL
             return connString;
         }
 
+        public string neSayisi(string sql)
+        {
+            connString = new NpgsqlConnection(conn);
+
+            if (connString.State == ConnectionState.Closed)
+                connString.Open();
+
+            cmdString = new NpgsqlCommand(sql, connString);
+            string kayit = cmdString.ExecuteScalar().ToString();
+            return kayit;
+        }
+
+
     }
 }
