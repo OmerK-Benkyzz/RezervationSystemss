@@ -193,7 +193,7 @@
                             <div class="booking-form">
                                 <form action="#">
                                     <div class="b-date arrive mb-15">
-                                        <input class="date-picker" type="text" placeholder="Giriş tarihi">
+                                        <input class="date-picker" type="text" id="girisTarihiRezevarsyon" placeholder="Giriş tarihi">
                                         <i class="mdi mdi-calendar-text"></i>
                                     </div>
                                     <div class="b-date departure mb-15">
@@ -211,7 +211,7 @@
                                         </select>
                                     </div>
                                     <div class="submit-form">
-                                        <button type="submit">Müsaitliği kontrol et</button>
+                                        <button type="button" id="checkMusaitMi"> Müsaitliği kontrol et</button>
                                     </div>
                                 </form>
                             </div>
@@ -667,6 +667,56 @@
             }
         }
         $(document).ready(function () {
+            $('#checkMusaitMi').on('click', function () {
+                var onlyRezerveDateGiris = $("#girisTarihiRezevarsyon").val();
+                var date = new Date(onlyRezerveDateGiris);
+                var odaRezervationPick = $("#odalar").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/RezervasyonMusaitMi",
+                    data: {
+                        roomId: odaRezervationPick,
+                        girisGun: onlyRezerveDateGiris 
+                    },
+                    dataType: 'json',
+                    processData: true,
+                    success: function (result) {
+                        if (result === true) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Müsait',
+                                text: 'Randevu Oluşturabilirsiniz!',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Yes, delete it!'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    Swal.fire(
+                                        'Deleted!',
+                                        'Your file has been deleted.',
+                                        'success'
+                                    )
+                                }
+                            })
+
+                        } else if(result==false){
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Üzgünüz',
+                                text: 'O Tarihlerde Bu Odamız Doludur!',
+                            })
+
+                        }
+                      
+                    }
+                });
+            });
+
+
+
+
+
             var lst2 = $('#odalar');
             var odaTuru = document.querySelector("#odatype");
             var secim1 = document.querySelector("#odalar");

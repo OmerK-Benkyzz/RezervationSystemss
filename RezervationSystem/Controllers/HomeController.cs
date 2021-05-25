@@ -89,7 +89,29 @@ namespace RezervationSystem.Controllers
 
         }
 
-        
+        public JsonResult RezervasyonMusaitMi(int roomId,string girisGun,string cikisGun)
+        {
+            //string parseGunGiris = girisGun.Replace('/', '.');
+            var gelenNe = postgreServices.RezervasyonlariGetirIdle(1);
+            //DateTime gelenGun =  Convert.ToDateTime(girisGun);
+            DateTime date = DateTime.ParseExact(girisGun, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            DateTime dateDeneme = DateTime.ParseExact("05/13/2021", "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            //var bune = DateTime.ParseExact(girisGun, "dd-MM-yyyy", CultureInfo.InvariantCulture).ToString("dd-MM-yyyy");
+            //DateTime gelenGun = Convert.ToDateTime(bune);
+            var a = gelenNe.Where(x => x.roomId == roomId).Any(r => r.r_baslama <= date && r.r_bitis >= date);
+            var b = gelenNe.Where(x => x.roomId == roomId).Any(r => r.r_bitis == date);
+            if (a == true)
+            {
+                    if (b == true && a == true)
+                {
+
+                    return Json(true);
+                }
+                return Json(false);
+
+            }
+            return Json(true);
+        }
 
         public JsonResult OdalariListele(int odaIdsi)
         {

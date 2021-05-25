@@ -54,9 +54,6 @@ namespace RezervationSystem.Business.Postgre
             }
             return roomTypeModels;
         }
-
-
-
         public List<RoomModel> odalarDonmeId(int id)
         {
 
@@ -79,7 +76,6 @@ namespace RezervationSystem.Business.Postgre
             }
             return roomModels;
         }
-
         public void MusteriKaydet(string girisGun, string cikisGun, string musteriAd, string musteriSoyad, string ucretToplam, string gunToplam, string odaNumber, string email, string cocukSayisi, string not, bool chckMi)
         {
             int kayitIDsi = 0;
@@ -112,6 +108,28 @@ namespace RezervationSystem.Business.Postgre
 
             }
 
+
+        }
+        public List<Customers> RezervasyonlariGetirIdle(int roomId)
+        {
+            List<Customers> customers = new List<Customers>();
+
+            string command = "select r_baslama,r_bitis,roomnumber from customers where roomnumber ="+roomId+ "";
+            using (PGDatabase dbd = new PGDatabase())
+            {
+                NpgsqlDataReader reader = dbd.Reader(command);
+                while (reader.Read())
+                {
+                    Customers customer = new Customers();
+                    customer.roomId= Convert.ToInt32(reader["roomnumber"]);
+                    customer.r_baslama = Convert.ToDateTime(reader["r_baslama"]);
+                    customer.r_bitis = Convert.ToDateTime(reader["r_bitis"]);
+                    customers.Add(customer);
+                }
+                reader.Close();
+                dbd.connClose();
+            }
+            return customers;
 
         }
     }
