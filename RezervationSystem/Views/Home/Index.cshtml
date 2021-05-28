@@ -372,7 +372,6 @@
     </div>
     <!--Our room end-->
     <!--Our services start-->
- 
     <!--Our services end-->
     <!--Our staff start-->
     <div class="our-staff text-center pb-80 white_bg">
@@ -665,7 +664,7 @@
                         NaN
                 );
             }
-        }
+        }   
         $(document).ready(function () {
             $('#checkMusaitMi').on('click', function () {
                 var onlyRezerveDateGiris = $("#girisTarihiRezevarsyon").val();
@@ -676,7 +675,7 @@
                     url: "/Home/RezervasyonMusaitMi",
                     data: {
                         roomId: odaRezervationPick,
-                        girisGun: onlyRezerveDateGiris 
+                        girisGun: onlyRezerveDateGiris
                     },
                     dataType: 'json',
                     processData: true,
@@ -685,37 +684,20 @@
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Müsait',
-                                text: 'Randevu Oluşturabilirsiniz!',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Yes, delete it!'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    Swal.fire(
-                                        'Deleted!',
-                                        'Your file has been deleted.',
-                                        'success'
-                                    )
-                                }
-                            })
+                                text: 'Randevu Oluşturabilirsiniz!'
 
-                        } else if(result==false){
+                            })
+                                    }
+                        else if (result == false) {
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Üzgünüz',
                                 text: 'O Tarihlerde Bu Odamız Doludur!',
                             })
-
                         }
-                      
                     }
                 });
             });
-
-
-
-
 
             var lst2 = $('#odalar');
             var odaTuru = document.querySelector("#odatype");
@@ -749,8 +731,7 @@
                     }
                 });
             })
-        });
-        $.ajax({
+        }); $.ajax({
             type: "GET",
             url: "/Home/ComboBoxaListele",
             dataType: 'json',
@@ -767,7 +748,7 @@
         });
 
         function yolla(odaSecim, kacGun, gelisGun, gidisGun) {
-            window.location = 'Home/paymentstart?&odaType=' + odaSecim + '&gxL=' + kacGun + '&arriveDt=' + gelisGun+'&leaveDt='+gidisGun;
+            window.location = 'Home/paymentstart?&odaType=' + odaSecim + '&gxL=' + kacGun + '&arriveDt=' + gelisGun + '&leaveDt=' + gidisGun;
         }
         $('#tekliOdaRezervasyonOlustur').on('click', function () {
             let a = $('#girisTekli').val();
@@ -815,7 +796,7 @@
                             'success',
 
                         ),
-                            window.setTimeout(yolla(1, gun_Farki, a, b),303300);
+                            window.setTimeout(yolla(1, gun_Farki, a, b), 303300);
                     }
                 })
             }
@@ -867,7 +848,7 @@
                             'success',
 
                         ),
-                            window.setTimeout(yolla(2, gun_Farki, a, b),3000)
+                            window.setTimeout(yolla(2, gun_Farki, a, b), 3000)
 
 
                     }
@@ -890,7 +871,6 @@
             var deneme1 = toUTF8Array(b);
             console.log('deneme : ' + a);
             console.log('deneme2 : ' + b);
-
             if (a == '' || b == '') {
                 Swal.fire({
                     icon: 'error',
@@ -926,9 +906,7 @@
                             'success',
 
                         ),
-                            window.setTimeout(yolla(3, gun_Farki,a,b),3500)
-
-
+                            window.setTimeout(yolla(3, gun_Farki, a, b), 3500)
                     }
                 })
             }
