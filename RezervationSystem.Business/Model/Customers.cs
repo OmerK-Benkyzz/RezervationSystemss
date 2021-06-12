@@ -25,5 +25,11 @@ namespace RezervationSystem.Business.Model
         public string notlar { get; set; }
 
         public string email { get; set; }
+
+        public int odanumarasi { get; set; }
+
+        public string cocuksayisi { get; set; }
+
+        public string odaturu { get; set; }
     }
 }

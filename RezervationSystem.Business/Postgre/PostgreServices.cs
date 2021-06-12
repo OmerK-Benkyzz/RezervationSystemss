@@ -88,8 +88,10 @@ namespace RezervationSystem.Business.Postgre
             using (pgdb)
             {
                 string commandsql = "";
-                commandsql = ("insert into customers (haschildren,ucret,ad,soyad,cocuksayisi,kisiSayisi,roomNumber,r_baslama,r_bitis,kalicakgunsayisi,notlar,email) values("
+                commandsql = ("insert into customers (haschildren,rezervasyoniptal,rezervasyonbitti,ucret,ad,soyad,cocuksayisi,kisiSayisi,roomNumber,r_baslama,r_bitis,kalicakgunsayisi,notlar,email) values("
                         + chckMi + ","
+                        + false + ","
+                        + false+ ","
                         + Convert.ToInt32(ucretToplam) + ",'"
                         + musteriAd + "','"
                         + musteriSoyad + "',"
@@ -131,6 +133,129 @@ namespace RezervationSystem.Business.Postgre
             }
             return customers;
 
+        }
+        public List<Customers> RandevulariGetir()
+        {
+            List<Customers> cstm = new List<Customers>();
+            using (PGDatabase dbd = new PGDatabase())
+            {
+                string command = "select *,rooms.roomnumber as roomnumbernum from customers inner join rooms   on customers.roomnumber = rooms.roomid inner join odatype on  rooms.odatur = odatype.id  and customers.rezervasyonbitti=false and customers.rezervasyoniptal = false  ";
+                NpgsqlDataReader reader = dbd.Reader(command);
+                while (reader.Read())
+                {
+                    Customers customer = new Customers();
+                    customer.ad = reader["ad"].ToString();
+                    customer.soyad = reader["soyad"].ToString();
+                    customer.email = reader["email"].ToString();
+                    customer.odaturu = (reader["odaturadi"]).ToString();
+                    customer.odanumarasi = Convert.ToInt32(reader["roomnumbernum"]);
+                    customer.id = Convert.ToInt32(reader["id"]);
+                    customer.r_baslama = Convert.ToDateTime(reader["r_baslama"]);
+                    customer.r_bitis = Convert.ToDateTime(reader["r_bitis"]);
+                    customer.cocukvarmi = Convert.ToBoolean(reader["haschildren"]);
+                    customer.cocuksayisi = (reader["cocuksayisi"]).ToString();
+                    customer.notlar = (reader["notlar"]).ToString();
+                    cstm.Add(customer);
+                }
+
+                reader.Close();
+                dbd.connClose();
+            }
+            return cstm;
+        }
+
+        public bool RezervasyonDone(int id)
+        {
+            bool success = false;
+
+            using (PGDatabase dbd = new PGDatabase())
+            {
+                string command = "update customers set rezervasyonbitti = true where id = " + id ;
+                int rowsAffected = dbd.Cmd(command);
+
+                if (rowsAffected > 0)
+                    success = true;
+                dbd.connClose();
+            }
+
+            return success;
+
+
+        }
+        public bool RezervasyonIptal(int id)
+        {
+            bool success = false;
+            using (PGDatabase dbd = new PGDatabase())
+            {
+                string command = "update customers set rezervasyoniptal = true where id = " + id ;
+                int rowsAffected = dbd.Cmd(command);
+                if (rowsAffected > 0)
+                    success = true;
+                dbd.connClose();
+            }
+
+            return success;
+
+
+        }
+
+        public List<Customers> RandevulariGetirBitmis()
+        {
+            List<Customers> cstm = new List<Customers>();
+            using (PGDatabase dbd = new PGDatabase())
+            {
+                string command = "select *,rooms.roomnumber as roomnumbernum from customers inner join rooms   on customers.roomnumber = rooms.roomid inner join odatype on  rooms.odatur = odatype.id  and customers.rezervasyonbitti=true ";
+                NpgsqlDataReader reader = dbd.Reader(command);
+                while (reader.Read())
+                {
+                    Customers customer = new Customers();
+                    customer.ad = reader["ad"].ToString();
+                    customer.soyad = reader["soyad"].ToString();
+                    customer.email = reader["email"].ToString();
+                    customer.odaturu = (reader["odaturadi"]).ToString();
+                    customer.odanumarasi = Convert.ToInt32(reader["roomnumbernum"]);
+                    customer.id = Convert.ToInt32(reader["id"]);
+                    customer.r_baslama = Convert.ToDateTime(reader["r_baslama"]);
+                    customer.r_bitis = Convert.ToDateTime(reader["r_bitis"]);
+                    customer.cocukvarmi = Convert.ToBoolean(reader["haschildren"]);
+                    customer.cocuksayisi = (reader["cocuksayisi"]).ToString();
+                    customer.notlar = (reader["notlar"]).ToString();
+                    cstm.Add(customer);
+                }
+
+                reader.Close();
+                dbd.connClose();
+            }
+            return cstm;
+        }
+        public List<Customers> RandevulariGetirIptaller()
+        {
+            List<Customers> cstm = new List<Customers>();
+            using (PGDatabase dbd = new PGDatabase())
+            {
+                string command = "select *,rooms.roomnumber as roomnumbernum from customers inner join rooms   on customers.roomnumber = rooms.roomid inner join odatype on  rooms.odatur = odatype.id  and customers.rezervasyoniptal =true  ";
+                NpgsqlDataReader reader = dbd.Reader(command);
+                while (reader.Read())
+                {
+                    Customers customer = new Customers();
+                    customer.ad = reader["ad"].ToString();
+                    customer.soyad = reader["soyad"].ToString();
+                    customer.email = reader["email"].ToString();
+                    customer.odaturu = (reader["odaturadi"]).ToString();
+                    customer.odanumarasi = Convert.ToInt32(reader["roomnumbernum"]);
+                    customer.id = Convert.ToInt32(reader["id"]);
+                    customer.r_baslama = Convert.ToDateTime(reader["r_baslama"]);
+                    customer.r_bitis = Convert.ToDateTime(reader["r_bitis"]);
+                    customer.cocukvarmi = Convert.ToBoolean(reader["haschildren"]);
+                    customer.cocuksayisi = (reader["cocuksayisi"]).ToString();
+                    customer.notlar = (reader["notlar"]).ToString();
+                    cstm.Add(customer);
+                }
+
+                reader.Close();
+                dbd.connClose();
+            }
+            return cstm;
         }
     }
 }

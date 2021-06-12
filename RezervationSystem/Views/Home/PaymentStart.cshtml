@@ -565,7 +565,7 @@
                 document.getElementById('myImageID').src = "/images/room/rm2.jpg";
 
             }
-            else if (type == 2) {
+            else if (type == 3) {
                 let toplam_tutar = kralDairesiUcret * day_Room;
                 $('#odaturuAdi').html('Kral Dairesi');
                 $('#gunlukUcret').html('Günlük Oda Ücreti : ' + kralDairesiUcret);
@@ -577,7 +577,7 @@
                 $('#cikisGun').val(cikisGun);
                 document.getElementById('myImageID').src = "/images/room/rm1.jpg";
             }
-            else if (type == 3) {
+            else if (type == 2) {
                 let toplam_tutar = ciftOdaUcret * day_Room;
                 $('#odaturuAdi').text('Çift Kişilik Oda');
                 $('#toplamOdenecekTutar').text('Toplam Tutar : ' + toplam_tutar);
@@ -696,21 +696,23 @@
             //$('#gunsayisiToplam').text(gun_Farki);
             //$('#totalVergi').html('8% ' +'<span>'+ vergi+'</span>');
             //$('#odemeToplami').text(totalTutar);
-            $('#toplamGunlukUcret').text(zaman_Farki);
+            //$('#toplamGunlukUcret').text('Günlük Ücret : £' + );
             if (type == 1) {
                 let toplam_tutar = tekOdaUcret * day_Room;
-                $('#odaGunluk').text('Günlük Ücret : £ '+tekOdaUcret);
+                $('#odaGunluk').text('Kalınacak Gün : ' + day_Room);
+                $('#toplamGunlukUcret').text('Günlük Ücret : £' + tekOdaUcret);
                 $('#toplamOdemeler').text('£ : ' + toplam_tutar);
             } else if (type == 2) {
-                let toplam_tutar = kralDairesiUcret * day_Room;
-                $('#odaGunluk').text('Günlük Ücret : £ ' + kralDairesiUcret);
+                let toplam_tutar = ciftOdaUcret * day_Room;
+                $('#odaGunluk').text('Kalınacak Gün : ' + day_Room);
+                $('#toplamGunlukUcret').text('Günlük Ücret : £' + ciftOdaUcret);
                 $('#toplamOdemeler').text('£ : ' + toplam_tutar);
             } else if (type == 3) {
-                let toplam_tutar = ciftOdaUcret * day_Room;
-                $('#odaGunluk').text('Günlük Ücret : £ ' + ciftOdaUcret);
-                $('#toplamOdemeler').text('£ : ' +toplam_tutar);
+                let toplam_tutar = kralDairesiUcret * day_Room;
+                $('#odaGunluk').text('Kalınacak Gün : ' + day_Room);
+                $('#toplamGunlukUcret').text('Günlük Ücret : £' + kralDairesiUcret);
+                $('#toplamOdemeler').text('£ : ' + toplam_tutar);
             }
         })
     </script>
-
 }

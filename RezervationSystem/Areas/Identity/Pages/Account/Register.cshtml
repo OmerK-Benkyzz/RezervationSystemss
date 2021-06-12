@@ -5,7 +5,13 @@
 }
 
 <h2>@ViewData["Title"]</h2>
+@if (!HttpContext.User.Identity.IsAuthenticated)
+{
+    
+}
 
+else
+{
 <div class="row">
     <div class="col-md-4">
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
@@ -27,11 +33,20 @@
                 <input asp-for="Input.ConfirmPassword" class="form-control" />
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-default">Register</button>
+            <button type="submit" class="btn btn-default">Kayıt Ol</button>
+            <hr />
+
+            <a href="~/Admin/Index" class="btn btn-block">Admin Panele Geri Dön</a>
         </form>
     </div>
 </div>
+}
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+
+
+    </script>
 }

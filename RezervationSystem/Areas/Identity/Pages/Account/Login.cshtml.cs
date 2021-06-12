@@ -70,7 +70,7 @@ namespace RezervationSystem.UI.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/Login/Login");
+            returnUrl = returnUrl ?? Url.Content("~/Admin/Index");
 
             if (ModelState.IsValid)
             {
